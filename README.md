@@ -59,11 +59,29 @@ Below are the wireframes for large, medium and small sized screens. There were c
 ## Technologies Used
 ### Languages:
   - [HTML5](https://en.wikipedia.org/wiki/HTML5)
-    - This is the main mark-up language for the project.
+    - This is the main mark-up language for the project
   - [CSS3](https://en.wikipedia.org/wiki/CSS)
-    - Used for personalised styling over and above the Bootstrap framework.
+    - Used for personalised styling over and above the Bootstrap framework
   - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
     - Used to animate, control and generally run all aspects of the game, scoreboard, and email service for the contact form
+
+### Libraries and Frameworks:
+  - [Google Fonts](https://fonts.google.com/)
+    - Used as the source for the font databases used in this site
+  - [Font Awesome 5.15.3](https://fontawesome.com/)
+    - Used as the source for the icons used, including the social media links in the footer
+
+### Tools:
+  - [Atom](https://atom.io/) with [GitHub Desktop](https://desktop.github.com/)
+    - Atom is my preferred text editor, linked with GitHub Desktop in order to push the code to GitHub
+  - [Git](https://git-scm.com/)
+    - Used for version control
+  - [GitHub](https://github.com/)
+    - Used to store, host and publish the project files
+  - [Balsamiq](https://balsamiq.com/)
+    - A wireframe program used to create the mock-ups
+  - [Coolors](https://coolors.co/)
+    - An online tool to create colour palettes
 
 ## Testing
 
