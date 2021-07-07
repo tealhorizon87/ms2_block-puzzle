@@ -27,6 +27,7 @@ This is a web-based game made with HTML and CSS, and animated and controlled usi
   - to be able to restart the game if I lose
   - to see my current score and level
   - to see my previous scores, and what my highest score is
+  - to be able to play the game on any sized device
   - contact the owner of the game app to suggest additional features or report bugs
 
 ### Design
@@ -39,8 +40,21 @@ The colours used for the background, text and blocks have been adapted from the 
 ![colour palette image](assets/img/colour-palette.png)
 
 ### Wireframes
+Below are the wireframes for large, medium and small sized screens. There were created using [Balsamiq](https://balsamiq.com/)
+#### Large
+![wireframe for large screen](assets/img/large.png)
+#### Medium
+![wireframe for medium screen](assets/img/medium.png)
+#### Small
+![wireframe for medium screen](assets/img/small.png)
 
 ## Features
+- A central grid is used as the main game space
+- A smaller grid is used to allow the user to see what shape is coming up next
+- A readout of the current level and score is displayed so the user can track their progress
+- A scoreboard is available that will store the best 10 scores the user has had
+- Where there is not enough space to display normally (eg. on a 'small' screen), modals are used
+- A contact form will be available to allow user-owner communication
 
 ## Technologies Used
 ### Languages:
