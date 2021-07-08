@@ -1,6 +1,22 @@
+/* ---------------------------------------Colours */
+:root {
+  --red-block: #fe3460;
+  --green-block: #47ff47;
+  --orange-block: #ff8b33;
+  --pink-block: #da47ff;
+  --tourquise-block: #70eaff;
+  --yellow-block: #ffda33;
+  --dark-blue: #272879;
+  --mid-blue: #4079e2;
+  --light-blue: #99dbff;
+}
+
 /* ---------------------------------------Fonts */
 body {
   font-family: "Geo", sans-serif;
+  font-weight: bold;
+  color: var(--light-blue);
+  background-color: var(--dark-blue);
 }
 
 h1,
@@ -13,9 +29,30 @@ h6 {
 }
 
 /* ---------------------------------------Header */
-header a,
-header h1 {
+header {
+  padding: 0.5rem;
+  display: flex;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
   display: inline-block;
+}
+
+a {
+  text-decoration: none;
+  color: var(--light-blue);
+  font-size: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 /* ---------------------------------------Main */
@@ -32,5 +69,6 @@ main section {
 }
 
 /* ------------------------------Left Section */
+
 /* ------------------------------Middle Section */
 /* ------------------------------Right Section */
