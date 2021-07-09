@@ -1,0 +1,146 @@
+/* ---------------------------------------Colours */
+:root {
+  --red-block: #fe3460;
+  --green-block: #47ff47;
+  --orange-block: #ff8b33;
+  --pink-block: #da47ff;
+  --tourquise-block: #70eaff;
+  --yellow-block: #ffda33;
+  --dark-blue: #272879;
+  --mid-blue: #4079e2;
+  --light-blue: #99dbff;
+}
+
+/* ---------------------------------------Fonts */
+body {
+  font-family: "Geo", sans-serif;
+  font-weight: bold;
+  color: var(--light-blue);
+  background-color: var(--mid-blue);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Aldrich", sans-serif;
+}
+
+/* ---------------------------------------Header */
+header {
+  display: flex;
+  justify-content: center;
+  margin: 1rem auto;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+header ul {
+  list-style: none;
+}
+
+header li {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+  color: var(--light-blue);
+  font-size: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* ---------------------------------------Main */
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main section {
+  width: 30vw;
+  height: 80vh;
+  margin: 0 auto;
+}
+
+/* ------------------------------Left Section */
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 2rem;
+  background-color: var(--dark-blue);
+  color: var(--light-blue);
+  border: 3px ridge var(--light-blue);
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+  border: 3px ridge var(--dark-blue);
+}
+
+/* ------------------------------Middle Section */
+#mainGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  height: 600px;
+  width: 300px;
+  border: 3px ridge var(--light-blue);
+  border-radius: 5px;
+}
+
+#mainGrid div {
+  height: 28px;
+  width: 28px;
+  background-color: var(--dark-blue);
+  border: 1px solid #4079e233;
+}
+
+/* ------------------------------Right Section */
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#previewGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  height: 90px;
+  width: 90px;
+  border: 3px ridge var(--light-blue);
+  border-radius: 5px;
+}
+
+#previewGrid div {
+  height: 28px;
+  width: 28px;
+  background-color: var(--dark-blue);
+  border: 1px solid #4079e233;
+}
+
+.scores {
+  margin-top: 1rem;
+  width: 50%;
+  background-color: var(--dark-blue);
+  border: 3px ridge var(--light-blue);
+  border-radius: 5px;
+}

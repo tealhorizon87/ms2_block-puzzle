@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Geo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Block Puzzle</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Block Puzzle</h1>
+      <ul>
+        <li>
+          <a href="#">Scoreboard</a>
+        </li>
+        <li>
+          <a href="#">Contact Us</a>
+        </li>
+      </ul>
+    </header>
+
+    <main>
+
+      <section class="left">
+        <button type="button" name="controls/rules" id="controlsAndRules">How to Play</button>
+        <button type="button" name="start/pause" id="startButton">Start</button>
+      </section>
+
+      <section class="centre">
+        <div class="grid" id="mainGrid"></div>
+      </section>
+
+      <section class="right">
+        <div class="next-block">
+          <h3>Next Block</h3>
+          <div class="grid" id="previewGrid"></div>
+        </div>
+        <div class="scores">
+          <p>High Score:
+            <span id="highScore"></span></p>
+          <p>Level:
+            <span id="currentLevel"></span></p>
+          <p>Score:
+            <span id="currentScore"></span></p>
+        </div>
+      </section>
+
+    </main>
+    <script src="https://kit.fontawesome.com/b0451faeb3.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/game.js"></script>
+    <script type="text/javascript" src="assets/email.js"></script>
+  </body>
+</html>
