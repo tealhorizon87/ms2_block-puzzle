@@ -28,6 +28,37 @@ h6 {
   font-family: "Aldrich", sans-serif;
 }
 
+/* --------------------------------General Styles */
+.box {
+  background-color: var(--dark-blue);
+  color: var(--light-blue);
+  border: 3px ridge var(--light-blue);
+  border-radius: 10px;
+}
+
+.grid-box {
+  background-color: var(--dark-blue);
+  color: var(--light-blue);
+  border: 3px ridge var(--light-blue);
+  border-radius: 5px;
+}
+
+.button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 2rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.button:hover {
+  background-color: var(--light-blue);
+  color: var(--dark-blue);
+  border: 3px ridge var(--dark-blue);
+  cursor: pointer;
+}
+
 /* ---------------------------------------Header */
 header {
   display: flex;
@@ -46,14 +77,16 @@ header ul {
 
 header li {
   display: inline-block;
-}
-
-a {
   text-decoration: none;
   color: var(--light-blue);
   font-size: 1.5rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+header li:hover {
+  color: var(--dark-blue);
+  cursor: pointer;
 }
 
 /* ---------------------------------------Main */
@@ -74,25 +107,6 @@ main section {
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-}
-
-button {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem 2rem;
-  background-color: var(--dark-blue);
-  color: var(--light-blue);
-  border: 3px ridge var(--light-blue);
-  border-radius: 10px;
-  font-family: inherit;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-button:hover {
-  background-color: var(--light-blue);
-  color: var(--dark-blue);
-  border: 3px ridge var(--dark-blue);
 }
 
 /* ------------------------------Middle Section */
@@ -126,8 +140,6 @@ button:hover {
   margin-bottom: 1rem;
   height: 90px;
   width: 90px;
-  border: 3px ridge var(--light-blue);
-  border-radius: 5px;
 }
 
 #previewGrid div {
@@ -139,8 +151,61 @@ button:hover {
 
 .scores {
   margin-top: 1rem;
+  padding: 0 1rem;
   width: 50%;
-  background-color: var(--dark-blue);
-  border: 3px ridge var(--light-blue);
+}
+
+/* ------------------------------------Modals */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #4079e2b3;
+}
+
+.modal-content {
+  margin: 20vh auto;
+  max-width: 40vw;
+}
+
+.modal-content > * {
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+.close {
+  margin: 0 1rem;
+  color: var(--light-blue);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--mid-blue);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ------------------------------------Contact Form */
+input, select, textarea {
+  display: block;
+  font-family: inherit;
+  font-size: 1rem;
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 80%;
+  border: 3px ridge var(--mid-blue);
   border-radius: 5px;
+  color: var(--dark-blue);
+}
+
+form button {
+  margin: 0 auto;
 }
