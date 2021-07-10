@@ -26,7 +26,7 @@
     <main>
 
       <section class="left">
-        <button type="button" name="controls/rules" id="controlsAndRules">How to Play</button>
+        <button type="button" name="controls/rules" id="instructionsButton">How to Play</button>
         <button type="button" name="start/pause" id="startButton">Start</button>
       </section>
 
@@ -48,6 +48,37 @@
             <span id="currentScore"></span></p>
         </div>
       </section>
+
+      <div class="modal" id="instructionsModal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>How to Play</h2>
+          <div class="controls">
+            <h3>Controls</h3>
+            <ul>
+              <li>You can use either the arrow or WSAD keys</li>
+              <li>Use the left-right/A-D keys to move the block sideways</li>
+              <li>Down-S moves the block faster</li>
+              <li>Up-W rotates the block</li>
+            </ul>
+          </div>
+          <div class="rules">
+            <h3>Rules</h3>
+            <ul>
+              <li>Clear as many lines as possible by fitting the blocks together until a whole row is full</li>
+              <li>Earn points for every line you make:
+                <ul>
+                  <li>10 for one line</li>
+                  <li>50 for two line</li>
+                  <li>150 for three line</li>
+                </ul>
+              </li>
+              <li>The 'next block' window will help you plan your moves</li>
+              <li>If the blocks get too high, the game is over</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
     </main>
     <script src="https://kit.fontawesome.com/b0451faeb3.js" crossorigin="anonymous"></script>
