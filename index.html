@@ -85,9 +85,9 @@
             Please let us know:
           </p>
           <div class="form-box">
-            <form class="contact-form">
-              <input type="text" name="full-name" placeholder="Full Name" required>
-              <input type="email" name="email" placeholder="Email Address" required>
+            <form class="contact-form" onsubmit="return sendMail(this);">
+              <input type="text" name="fullname" placeholder="Full Name" required>
+              <input type="email" name="emailaddress" placeholder="Email Address" required>
               <select name="subject" required>
                 <option value="" disabled selected>Subject</option>
                 <option value="bugs">Bugs</option>
@@ -103,6 +103,12 @@
 
     </main>
     <script src="https://kit.fontawesome.com/b0451faeb3.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function(){
+        emailjs.init("user_IW6Pwsm8AWLFCD87hj6JH");
+      })();
+    </script>
     <script type="text/javascript" src="assets/game.js"></script>
     <script type="text/javascript" src="assets/email.js"></script>
   </body>
