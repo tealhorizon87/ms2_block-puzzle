@@ -63,7 +63,8 @@ h6 {
 header {
   display: flex;
   justify-content: center;
-  margin: 1rem auto;
+  height: 15vh;
+  align-items: flex-end;
 }
 
 h1 {
@@ -73,6 +74,7 @@ h1 {
 
 header ul {
   list-style: none;
+  margin-bottom: 0;
 }
 
 header li {
@@ -97,7 +99,7 @@ main {
 
 main section {
   width: 30vw;
-  height: 80vh;
+  height: 75vh;
   margin: 0 auto;
 }
 
@@ -110,10 +112,15 @@ main section {
 }
 
 /* ------------------------------Middle Section */
+.centre {
+  display: flex;
+  align-items: center;
+}
+
 #mainGrid {
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  margin: 0 auto;
   height: 600px;
   width: 300px;
   border: 3px ridge var(--light-blue);
@@ -195,17 +202,23 @@ main section {
 
 /* ------------------------------------Contact Form */
 input, select, textarea {
-  display: block;
   font-family: inherit;
   font-size: 1rem;
   margin: 0 auto;
   padding: 0.5rem;
   width: 80%;
   border: 3px ridge var(--mid-blue);
-  border-radius: 5px;
+  border-radius: 10px;
   color: var(--dark-blue);
 }
 
+form {
+  text-align: center;
+}
+
 form button {
-  margin: 0 auto;
+  background-color: var(--mid-blue);
+  color: var(--light-blue);
+  border: 3px ridge var(--light-blue);
+  border-radius: 10px;
 }
