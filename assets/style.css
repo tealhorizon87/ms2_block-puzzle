@@ -222,3 +222,58 @@ form button {
   border: 3px ridge var(--light-blue);
   border-radius: 10px;
 }
+
+/* -----------------------------Media Queries */
+@media screen and (max-width: 1024px) {
+  .left {
+    width: 25%;
+  }
+
+  .centre {
+    width: 50%;
+  }
+
+  .right {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .left {
+    width: 20%;
+  }
+
+  .centre {
+    width: 60%;
+  }
+
+  .right {
+    width: 20%;
+  }
+
+  #mainGrid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    height: 400px;
+    width: 200px;
+  }
+
+  #mainGrid div {
+    height: 18px;
+    width: 18px;
+  }
+
+  @media screen and (max-width: 450px) {
+    .left {
+      display: none;
+    }
+
+    .centre {
+      width: 100%;
+    }
+
+    .right {
+      display: none;
+    }
+  }
