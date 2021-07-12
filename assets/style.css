@@ -63,8 +63,8 @@ h6 {
 header {
   display: flex;
   justify-content: center;
-  height: 15vh;
   align-items: flex-end;
+  margin-bottom: 2rem;
 }
 
 h1 {
@@ -79,7 +79,6 @@ header ul {
 
 header li {
   display: inline-block;
-  text-decoration: none;
   color: var(--light-blue);
   font-size: 1.5rem;
   padding-left: 0.5rem;
@@ -91,15 +90,19 @@ header li:hover {
   cursor: pointer;
 }
 
+#instructions {
+  display: none;
+}
+
 /* ---------------------------------------Main */
 main {
   display: flex;
   flex-wrap: wrap;
+  height: 80vh;
 }
 
 main section {
   width: 30vw;
-  height: 75vh;
   margin: 0 auto;
 }
 
@@ -177,7 +180,7 @@ main section {
 
 .modal-content {
   margin: 20vh auto;
-  max-width: 40vw;
+  max-width: 50vw;
 }
 
 .modal-content > * {
@@ -186,7 +189,7 @@ main section {
 }
 
 .close {
-  margin: 0 1rem;
+  margin: 0;
   color: var(--light-blue);
   float: right;
   font-size: 28px;
@@ -239,6 +242,14 @@ form button {
 }
 
 @media screen and (max-width: 680px) {
+  header {
+    align-items: center;
+  }
+
+  header li {
+    display: block;
+  }
+
   .left {
     width: 20%;
   }
@@ -264,16 +275,47 @@ form button {
     width: 18px;
   }
 
-  @media screen and (max-width: 450px) {
-    .left {
-      display: none;
-    }
-
-    .centre {
-      width: 100%;
-    }
-
-    .right {
-      display: none;
-    }
+  .button {
+    font-size: 1rem;
   }
+
+  .modal-content {
+    max-width: 80vw;
+    max-height: 50vh;
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  header {
+    margin-bottom: 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  header ul {
+    padding: 0;
+  }
+
+  header li {
+    font-size: 1rem;
+  }
+
+  #instructions {
+    display: block;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .centre {
+    width: 100%;
+  }
+
+  .right {
+    display: none;
+  }
+}
