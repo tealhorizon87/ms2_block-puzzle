@@ -69,7 +69,7 @@ header {
 
 h1 {
   font-size: 3rem;
-  margin: 0;
+  margin: 0 auto;
 }
 
 header ul {
@@ -90,7 +90,7 @@ header li:hover {
   cursor: pointer;
 }
 
-#instructions {
+.menu-icon {
   display: none;
 }
 
@@ -296,14 +296,16 @@ form button {
   }
 
   header ul {
-    padding: 0;
+    display: none;
   }
 
-  header li {
-    font-size: 1rem;
+  .menu-icon {
+    display: block;
+    font-size: 1.5rem;
+    justify-content: flex-end;
   }
 
-  #instructions {
+  #menuModal button {
     display: block;
   }
 

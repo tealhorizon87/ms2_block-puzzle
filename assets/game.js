@@ -6,7 +6,7 @@ var gridSquare = document.createElement('div');
 // variables for (instructions)modal operations
 var instructionsModal = document.getElementById('instructionsModal');
 var instructionsButton = document.getElementById('instructionsButton');
-var instructionsMenuButton = document.getElementById('instructions');
+var menuButton = document.getElementById('menuButton');
 var closeInstructions = document.getElementsByClassName('close')[0];
 
 // variables for (contact)modal operations
@@ -27,8 +27,8 @@ function drawGrids() {
 instructionsButton.onclick = function() {
   instructionsModal.style.display = 'block';
 }
-instructionsMenuButton.onclick = function() {
-  instructionsModal.style.display = 'block';
+menuButton.onclick = function() {
+  menuModal.style.display = 'block';
 }
 contactButton.onclick = function() {
   contactModal.style.display = 'block';
@@ -44,6 +44,9 @@ window.onclick = function(event) {
   }
   if (event.target == contactModal) {
     contactModal.style.display = 'none';
+  }
+  if (event.target == menuModal) {
+    menuModal.style.display = 'none';
   }
 }
 

@@ -14,10 +14,12 @@
     <header>
       <h1>Block Puzzle</h1>
       <ul>
-        <li id="instructions">How to Play</li>
         <li id="scoreboardButton">Scoreboard</li>
         <li id="contactButton">Contact Us</li>
       </ul>
+      <div class="menu-icon button">
+        <i class="fas fa-bars" id="menuButton"></i>
+      </div>
     </header>
 
     <main>
@@ -100,7 +102,13 @@
           </div>
         </div>
       </div>
-
+      <div class="modal" id="menuModal">
+        <div class="modal-content box">
+          <button class="button box" type="button" name="start/pause" id="startButtonSmall">Start</button>
+          <button class="button box" type="button" name="instructions" id="instructionsButtonSmall">How to Play</button>
+          <button class="button box" type="button" name="scoreboard" id="scoreboardButtonSmall">Scoreboard</button>
+        </div>
+      </div>
     </main>
     <script src="https://kit.fontawesome.com/b0451faeb3.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
