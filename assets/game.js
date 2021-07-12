@@ -1,44 +1,31 @@
 // variables for game-grid and preview-grid
-var gameGrid = document.getElementById('mainGrid');
-var previewGrid = document.getElementById('previewGrid');
+const gameGrid = document.getElementById('mainGrid');
+const previewGrid = document.getElementById('previewGrid');
 var gridSquare = document.createElement('div');
+var matrix
+var previewMatrix
 
-// variables for (instructions)modal operations
-var instructionsModal = document.getElementById('instructionsModal');
+// variables for modal event listeners
 var instructionsButton = document.getElementById('instructionsButton');
-var menuButton = document.getElementById('menuButton');
-var closeInstructions = document.getElementsByClassName('close')[0];
-
-// variables for (contact)modal operations
-var contactModal = document.getElementById('contactModal');
 var contactButton = document.getElementById('contactButton');
-
-// FOR loops to populate the game-grid and preview-grid
-function drawGrids() {
-  for (let i = 0; i < 200; i++) {
-    gameGrid.appendChild(gridSquare.cloneNode(true));
-  }
-  for (let i = 0; i < 9; i++) {
-    previewGrid.appendChild(gridSquare.cloneNode(true));
-  }
-}
-
-// modal operations
-instructionsButton.onclick = function() {
+var menuButton = document.getElementById('menuButton');
+var closeButton = document.getElementById('close');
+var instructionsModal = document.getElementById('instructionsModal');
+var contactModal = document.getElementById('contactModal');
+// modal event listeners
+instructionsButton.addEventListener('click', function() {
   instructionsModal.style.display = 'block';
-}
-menuButton.onclick = function() {
-  menuModal.style.display = 'block';
-}
-contactButton.onclick = function() {
+})
+contactButton.addEventListener('click', function() {
   contactModal.style.display = 'block';
-}
-
-closeInstructions.onclick = function() {
+})
+menuButton.addEventListener('click', function() {
+  menuModal.style.display = 'block';
+})
+closeButton.addEventListener('click', function() {
   instructionsModal.style.display = 'none';
-}
-
-window.onclick = function(event) {
+})
+window.addEventListener('click', function () {
   if (event.target == instructionsModal) {
     instructionsModal.style.display = 'none';
   }
@@ -48,7 +35,20 @@ window.onclick = function(event) {
   if (event.target == menuModal) {
     menuModal.style.display = 'none';
   }
-}
+})
 
-// call necessary functions
-drawGrids()
+// event listener to draw the grids when the page has loaded
+document.addEventListener('DOMContentLoaded', drawGrids())
+
+
+// function to draw out the main and preview grids
+function drawGrids() {
+  for (let i = 0; i < 200; i++) {
+    gameGrid.appendChild(gridSquare.cloneNode(true));
+  }
+  for (let i = 0; i < 9; i++) {
+    previewGrid.appendChild(gridSquare.cloneNode(true));
+  }
+  matrix = Array.from(gameGrid.children);
+  previewMatrix = Array.from(previewGrid.children);
+}
