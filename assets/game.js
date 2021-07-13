@@ -1,17 +1,19 @@
-// variables for game-grid and preview-grid
+// variables and constants used to draw the grids
 const gameGrid = document.getElementById('mainGrid');
 const previewGrid = document.getElementById('previewGrid');
-var gridSquare = document.createElement('div');
-var matrix
-var previewMatrix
+// Event listener to draw the grids when the page has loaded
+document.addEventListener('DOMContentLoaded', drawGrids);
 
-// variables for modal event listeners
-var instructionsButton = document.getElementById('instructionsButton');
-var contactButton = document.getElementById('contactButton');
-var menuButton = document.getElementById('menuButton');
-var closeButton = document.getElementById('close');
-var instructionsModal = document.getElementById('instructionsModal');
-var contactModal = document.getElementById('contactModal');
+// Button constants
+const instructionsButton = document.getElementById('instructionsButton');
+const contactButton = document.getElementById('contactButton');
+const menuButton = document.getElementById('menuButton');
+const closeButton = document.getElementById('close');
+const startPauseButton = document.getElementById('startButton');
+
+// Modal constants
+const instructionsModal = document.getElementById('instructionsModal');
+const contactModal = document.getElementById('contactModal');
 // modal event listeners
 instructionsButton.addEventListener('click', function() {
   instructionsModal.style.display = 'block';
@@ -37,18 +39,107 @@ window.addEventListener('click', function () {
   }
 })
 
-// event listener to draw the grids when the page has loaded
-document.addEventListener('DOMContentLoaded', drawGrids())
+// Event listener for the start button in order to start the game
+startPauseButton.addEventListener('click', startGame);
 
+// constants containing the arrays for the blocks and their rotations
+const jBlock = [
+  [1, 2, 11, 21],
+  [10, 11, 12, 22],
+  [1, 11, 20, 21],
+  [0, 10, 11, 12]
+];
+const lBlock = [
+  [0, 1, 11, 21],
+  [2, 10, 11, 12],
+  [1, 11, 21, 22],
+  [10, 11, 12, 20]
+];
+const zBlock = [
+  [0, 1, 11, 12],
+  [1, 10, 11, 20],
+  [0, 1, 11, 12],
+  [1, 10, 11, 20]
+];
+const tBlock = [
+  [0, 1, 2, 11],
+  [1, 10, 11, 21],
+  [1, 10, 11, 12],
+  [1, 11, 12, 21]
+];
+const oBlock = [
+  [0, 1, 10, 11],
+  [0, 1, 10, 11],
+  [0, 1, 10, 11],
+  [0, 1, 10, 11]
+];
+const iBlock = [
+  [1, 11, 21, 31],
+  [10, 11, 12, 13],
+  [1, 11, 21, 31],
+  [10, 11, 12, 13]
+];
+
+// variables and constants for the main game
+const gridWidth = 10;
+var matrix
+var previewMatrix
+const blocks = [jBlock, lBlock, zBlock, tBlock, oBlock, iBlock];
+const colours = [
+  ['var(--yellow-block)'],
+  ['var(--green-block)'],
+  ['var(--orange-block)'],
+  ['var(--tourquise-block)'],
+  ['var(--pink-block)'],
+  ['var(--red-block)']
+];
+var currentPosition = 3;
+var currentRotation = 0;
+var random = Math.floor(Math.random()*blocks.length);
+var current = blocks[random][currentRotation];
 
 // function to draw out the main and preview grids
 function drawGrids() {
-  for (let i = 0; i < 200; i++) {
+  let gridSquare = document.createElement('div');
+  for (let i = 0; i < 201; i++) {
     gameGrid.appendChild(gridSquare.cloneNode(true));
+    gridSquare.classList.add('square');
   }
   for (let i = 0; i < 9; i++) {
     previewGrid.appendChild(gridSquare.cloneNode(true));
+    gridSquare.classList.add('square');
   }
+  gameGrid.children[0].remove();
+}
+
+// Draw a block
+function draw() {
+  current.forEach(index => {
+    matrix[currentPosition + index].classList.remove('square');
+    matrix[currentPosition + index].classList.add('block');
+    matrix[currentPosition + index].style.backgroundColor = colours[random];
+    matrix[currentPosition + index].style.borderColor = colours[random];
+  })
+}
+// Undraw a block
+function unDraw() {
+  current.forEach(index => {
+    matrix[currentPosition + index].classList.remove('block');
+    matrix[currentPosition + index].classList.add('square');
+    matrix[currentPosition + index].removeAttribute('style');
+  })
+}
+
+// movement function
+function moveDown() {
+  unDraw()
+  currentPosition += gridWidth;
+  draw()
+}
+
+function startGame() {
   matrix = Array.from(gameGrid.children);
   previewMatrix = Array.from(previewGrid.children);
+  draw()
+  setInterval(moveDown, 1000)
 }
