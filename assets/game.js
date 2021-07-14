@@ -112,9 +112,13 @@ var currentBlock = blocks[random][currentRotation];
 
 // function to draw out the main and preview grids
 function drawGrids() {
-  for (let i = 0; i < 201; i++) {
+  for (let i = 0; i < 200; i++) {
     gameGrid.appendChild(gridSquare.cloneNode(true));
     gridSquare.classList.add('square');
+  }
+  for (let i = 0; i < 11; i++) {
+  gameGrid.appendChild(gridSquare.cloneNode(true));
+  gridSquare.classList.add('taken');
   }
   for (let i = 0; i < 16; i++) {
     previewGrid.appendChild(gridSquare.cloneNode(true));
@@ -166,11 +170,24 @@ function displayPreview() {
   previewDraw()
 }
 
-// movement function
+// movement functions
 function moveDown() {
   unDraw()
   currentPosition += gridWidth;
   draw()
+  stopMoveDown()
+}
+
+function stopMoveDown() {
+  if (currentBlock.some(index => matrix[currentPosition + index + gridWidth].classList.contains('taken'))) {
+    currentBlock.forEach(index => matrix[currentPosition + index].classList.add('taken'));
+    random = previewRandom
+    previewRandom = Math.floor(Math.random()*blocks.length);
+    currentBlock = blocks[random][currentRotation]
+    currentPosition = 3;
+    draw()
+    displayPreview()
+  }
 }
 
 function startGame() {
