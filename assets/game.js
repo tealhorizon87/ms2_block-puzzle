@@ -1,6 +1,8 @@
 // variables and constants used to draw the grids
 const gameGrid = document.getElementById('mainGrid');
 const previewGrid = document.getElementById('previewGrid');
+const gridSquare = document.createElement('div');
+
 // Event listener to draw the grids when the page has loaded
 document.addEventListener('DOMContentLoaded', drawGrids);
 
@@ -42,7 +44,8 @@ window.addEventListener('click', function () {
 // Event listener for the start button in order to start the game
 startPauseButton.addEventListener('click', startGame);
 
-// constants containing the arrays for the blocks and their rotations
+// constants containing the arrays for the blocks and their rotations,
+// an array containing all the blocks, and an array for the colours
 const jBlock = [
   [1, 2, 11, 21],
   [10, 11, 12, 22],
@@ -79,12 +82,15 @@ const iBlock = [
   [1, 11, 21, 31],
   [10, 11, 12, 13]
 ];
-
-// variables and constants for the main game
-const gridWidth = 10;
-var matrix
-var previewMatrix
 const blocks = [jBlock, lBlock, zBlock, tBlock, oBlock, iBlock];
+const previewBlocks = [
+  [5, 6, 9, 13],
+  [5, 6, 10, 14],
+  [5, 6, 10, 11],
+  [5, 6, 7, 10],
+  [5, 6, 9, 10],
+  [1, 5, 9, 13]
+];
 const colours = [
   ['var(--yellow-block)'],
   ['var(--green-block)'],
@@ -93,19 +99,28 @@ const colours = [
   ['var(--pink-block)'],
   ['var(--red-block)']
 ];
+// variables and constants for the main game
+const gridWidth = 10;
+var matrix
+var previewMatrix
 var currentPosition = 3;
 var currentRotation = 0;
 var random = Math.floor(Math.random()*blocks.length);
-var current = blocks[random][currentRotation];
+var previewRandom
+var currentBlock = blocks[random][currentRotation];
+// var previewBlock = previewBlocks[previewRandom];
 
 // function to draw out the main and preview grids
 function drawGrids() {
-  let gridSquare = document.createElement('div');
-  for (let i = 0; i < 201; i++) {
+  for (let i = 0; i < 200; i++) {
     gameGrid.appendChild(gridSquare.cloneNode(true));
     gridSquare.classList.add('square');
   }
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 11; i++) {
+  gameGrid.appendChild(gridSquare.cloneNode(true));
+  gridSquare.classList.add('taken');
+  }
+  for (let i = 0; i < 16; i++) {
     previewGrid.appendChild(gridSquare.cloneNode(true));
     gridSquare.classList.add('square');
   }
@@ -114,32 +129,72 @@ function drawGrids() {
 
 // Draw a block
 function draw() {
-  current.forEach(index => {
+  currentBlock.forEach(index => {
     matrix[currentPosition + index].classList.remove('square');
     matrix[currentPosition + index].classList.add('block');
     matrix[currentPosition + index].style.backgroundColor = colours[random];
     matrix[currentPosition + index].style.borderColor = colours[random];
   })
 }
+
+function previewDraw() {
+  previewBlocks[previewRandom].forEach(index => {
+    previewMatrix[index].classList.remove('square');
+    previewMatrix[index].classList.add('block');
+    previewMatrix[index].style.backgroundColor = colours[previewRandom];
+    previewMatrix[index].style.borderColor = colours[previewRandom];
+  })
+  // currentBlock = blocks[previewRandom][currentRotation];
+}
+
 // Undraw a block
 function unDraw() {
-  current.forEach(index => {
+  currentBlock.forEach(index => {
     matrix[currentPosition + index].classList.remove('block');
     matrix[currentPosition + index].classList.add('square');
     matrix[currentPosition + index].removeAttribute('style');
   })
 }
 
-// movement function
+function previewUnDraw() {
+  previewMatrix.forEach(index => {
+    index.classList.remove('block');
+    index.classList.add('square');
+    index.removeAttribute('style');
+  })
+}
+
+// Display the next block in the preview grid
+function displayPreview() {
+  previewUnDraw()
+  previewDraw()
+}
+
+// movement functions
 function moveDown() {
   unDraw()
   currentPosition += gridWidth;
   draw()
+  stopMoveDown()
+}
+
+function stopMoveDown() {
+  if (currentBlock.some(index => matrix[currentPosition + index + gridWidth].classList.contains('taken'))) {
+    currentBlock.forEach(index => matrix[currentPosition + index].classList.add('taken'));
+    random = previewRandom
+    previewRandom = Math.floor(Math.random()*blocks.length);
+    currentBlock = blocks[random][currentRotation]
+    currentPosition = 3;
+    draw()
+    displayPreview()
+  }
 }
 
 function startGame() {
   matrix = Array.from(gameGrid.children);
   previewMatrix = Array.from(previewGrid.children);
-  draw()
-  setInterval(moveDown, 1000)
+  draw();
+  setInterval(moveDown, 1000);
+  previewRandom = Math.floor(Math.random()*blocks.length);
+  displayPreview();
 }
