@@ -86,6 +86,8 @@ const lBlock = [
 const zBlock = [
   [0, 1, gridWidth+1, gridWidth+2],
   [1, gridWidth, gridWidth+1, gridWidth*2],
+  [0, 1, gridWidth+1, gridWidth+2],
+  [1, gridWidth, gridWidth+1, gridWidth*2]
 ];
 const tBlock = [
   [0, 1, 2, gridWidth+1],
@@ -96,10 +98,14 @@ const tBlock = [
 const oBlock = [
   [0, 1, gridWidth, gridWidth+1],
   [1, 2, gridWidth+1, gridWidth+2],
+  [0, 1, gridWidth, gridWidth+1],
+  [1, 2, gridWidth+1, gridWidth+2]
 ];
 const iBlock = [
   [1, gridWidth+1, gridWidth*2+1, gridWidth*3+1],
   [gridWidth, gridWidth+1, gridWidth+2, gridWidth+3],
+  [1, gridWidth+1, gridWidth*2+1, gridWidth*3+1],
+  [gridWidth, gridWidth+1, gridWidth+2, gridWidth+3]
 ];
 const blocks = [jBlock, lBlock, zBlock, tBlock, oBlock, iBlock];
 const previewBlocks = [
@@ -202,6 +208,7 @@ function stopMoveDown() {
     previewRandom = Math.floor(Math.random()*blocks.length);
     currentBlock = blocks[random][currentRotation]
     currentPosition = 3;
+    currentRotation = 0;
     draw()
     displayPreview()
   }
@@ -236,22 +243,28 @@ function moveRight() {
 }
 
 function rotate() {
-
+  unDraw()
+  currentRotation = (currentRotation + 1) % 4;
+  currentBlock = blocks[random][currentRotation];
+  draw()
 }
 
 function moveDownFaster() {
-  
+  unDraw()
+  currentPosition += gridWidth;
+  draw()
+  stopMoveDown()
 }
 
 window.addEventListener('keydown', function(event) {
   switch(event.code) {
     case 'KeyW':
     case 'ArrowUp':
-      // rotate
+      rotate()
       break;
     case 'KeyS':
     case 'ArrowDown':
-      // move down quicker
+      moveDownFaster()
       break;
     case 'KeyA':
     case 'ArrowLeft':
