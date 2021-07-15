@@ -207,6 +207,65 @@ function stopMoveDown() {
   }
 }
 
+function moveLeft () {
+  const leftEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 0);
+  const taken = currentBlock.some(index => matrix[currentPosition + index].classList.contains('taken'));
+  if (leftEdge || taken) {
+    unDraw()
+    currentPosition += 1;
+    draw()
+  } else {
+    unDraw()
+    currentPosition -=1;
+    draw()
+  }
+}
+
+function moveRight() {
+  const rightEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 9);
+  const taken = currentBlock.some(index => matrix[currentPosition + index].classList.contains('taken'));
+  if (rightEdge || taken) {
+    unDraw()
+    currentPosition -= 1;
+    draw()
+  } else {
+    unDraw()
+    currentPosition +=1;
+    draw()
+  }
+}
+
+function rotate() {
+
+}
+
+function moveDownFaster() {
+  
+}
+
+window.addEventListener('keydown', function(event) {
+  switch(event.code) {
+    case 'KeyW':
+    case 'ArrowUp':
+      // rotate
+      break;
+    case 'KeyS':
+    case 'ArrowDown':
+      // move down quicker
+      break;
+    case 'KeyA':
+    case 'ArrowLeft':
+      moveLeft();
+      break;
+    case 'KeyD':
+    case 'ArrowRight':
+      moveRight()
+      break;
+  }
+});
+
+
+// start game function
 function startGame() {
   matrix = Array.from(mainGrid.children);
   previewMatrix = Array.from(previewGrid.children);
