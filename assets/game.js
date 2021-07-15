@@ -1,5 +1,5 @@
 // variables and constants used to draw the grids
-const gameGrid = document.getElementById('mainGrid');
+const mainGrid = document.getElementById('mainGrid');
 const previewGrid = document.getElementById('previewGrid');
 const gridSquare = document.createElement('div');
 
@@ -8,14 +8,36 @@ document.addEventListener('DOMContentLoaded', drawGrids);
 
 // Button constants
 const instructionsButton = document.getElementById('instructionsButton');
+const scoreboardButton = document.getElementById('scoreboardButton');
 const contactButton = document.getElementById('contactButton');
 const menuButton = document.getElementById('menuButton');
 const closeButton = document.getElementById('close');
 const startPauseButton = document.getElementById('startButton');
+const startButtonSmall = document.getElementById('startButtonSmall');
+const instructionsButtonSmall = document.getElementById('instructionsButtonSmall');
+const scoreboardButtonSmall = document.getElementById('scoreboardButtonSmall');
+const buttons = [
+  instructionsButton,
+  scoreboardButton,
+  contactButton,
+  menuButton,
+  closeButton,
+  startPauseButton,
+  startButtonSmall,
+  instructionsButtonSmall,
+  scoreboardButtonSmall
+];
 
 // Modal constants
 const instructionsModal = document.getElementById('instructionsModal');
 const contactModal = document.getElementById('contactModal');
+const menuModal = document.getElementById('menuModal');
+const modals = [
+  instructionsModal,
+  contactModal,
+  menuModal
+];
+
 // modal event listeners
 instructionsButton.addEventListener('click', function() {
   instructionsModal.style.display = 'block';
@@ -45,51 +67,48 @@ window.addEventListener('click', function () {
 startPauseButton.addEventListener('click', startGame);
 
 // constants containing the arrays for the blocks and their rotations,
-// an array containing all the blocks, and an array for the colours
+// an array containing all the blocks and one to contain the preview blocks,
+// and an array for the colours
+const gridWidth = 10;
+const previewGridWidth = 4;
 const jBlock = [
-  [1, 2, 11, 21],
-  [10, 11, 12, 22],
-  [1, 11, 20, 21],
-  [0, 10, 11, 12]
+  [1, 2, gridWidth+1, gridWidth*2+1],
+  [gridWidth, gridWidth+1, gridWidth+2, gridWidth*2+2],
+  [1, gridWidth+1, gridWidth*2, gridWidth*2+1],
+  [0, gridWidth, gridWidth+1, gridWidth+2]
 ];
 const lBlock = [
-  [0, 1, 11, 21],
-  [2, 10, 11, 12],
-  [1, 11, 21, 22],
-  [10, 11, 12, 20]
+  [0, 1, gridWidth+1, gridWidth*2+1],
+  [2, gridWidth, gridWidth+1, gridWidth+2],
+  [1, gridWidth+1, gridWidth*2+1, gridWidth*2+2],
+  [gridWidth, gridWidth+1, gridWidth+2, gridWidth*2]
 ];
 const zBlock = [
-  [0, 1, 11, 12],
-  [1, 10, 11, 20],
-  [0, 1, 11, 12],
-  [1, 10, 11, 20]
+  [0, 1, gridWidth+1, gridWidth+2],
+  [1, gridWidth, gridWidth+1, gridWidth*2],
 ];
 const tBlock = [
-  [0, 1, 2, 11],
-  [1, 10, 11, 21],
-  [1, 10, 11, 12],
-  [1, 11, 12, 21]
+  [0, 1, 2, gridWidth+1],
+  [1, gridWidth, gridWidth+1, gridWidth*2+1],
+  [1, gridWidth, gridWidth+1, gridWidth+2],
+  [1, gridWidth+1, gridWidth+2, gridWidth*2+1]
 ];
 const oBlock = [
-  [0, 1, 10, 11],
-  [0, 1, 10, 11],
-  [0, 1, 10, 11],
-  [0, 1, 10, 11]
+  [0, 1, gridWidth, gridWidth+1],
+  [1, 2, gridWidth+1, gridWidth+2],
 ];
 const iBlock = [
-  [1, 11, 21, 31],
-  [10, 11, 12, 13],
-  [1, 11, 21, 31],
-  [10, 11, 12, 13]
+  [1, gridWidth+1, gridWidth*2+1, gridWidth*3+1],
+  [gridWidth, gridWidth+1, gridWidth+2, gridWidth+3],
 ];
 const blocks = [jBlock, lBlock, zBlock, tBlock, oBlock, iBlock];
 const previewBlocks = [
-  [5, 6, 9, 13],
-  [5, 6, 10, 14],
-  [5, 6, 10, 11],
-  [5, 6, 7, 10],
-  [5, 6, 9, 10],
-  [1, 5, 9, 13]
+  [previewGridWidth+1, previewGridWidth+2, previewGridWidth*2+1, previewGridWidth*3+1],
+  [previewGridWidth+1, previewGridWidth+2, previewGridWidth*2+2, previewGridWidth*3+2],
+  [previewGridWidth+1, previewGridWidth+2, previewGridWidth*2+2, previewGridWidth*2+3],
+  [previewGridWidth+1, previewGridWidth+2, previewGridWidth+3, previewGridWidth*2+2],
+  [previewGridWidth+1, previewGridWidth+2, previewGridWidth*2+1, previewGridWidth*2+2],
+  [1, previewGridWidth+1, previewGridWidth*2+1, previewGridWidth*3+1]
 ];
 const colours = [
   ['var(--yellow-block)'],
@@ -99,8 +118,8 @@ const colours = [
   ['var(--pink-block)'],
   ['var(--red-block)']
 ];
+
 // variables and constants for the main game
-const gridWidth = 10;
 var matrix
 var previewMatrix
 var currentPosition = 3;
@@ -108,23 +127,22 @@ var currentRotation = 0;
 var random = Math.floor(Math.random()*blocks.length);
 var previewRandom
 var currentBlock = blocks[random][currentRotation];
-// var previewBlock = previewBlocks[previewRandom];
 
 // function to draw out the main and preview grids
 function drawGrids() {
   for (let i = 0; i < 200; i++) {
-    gameGrid.appendChild(gridSquare.cloneNode(true));
+    mainGrid.appendChild(gridSquare.cloneNode(true));
     gridSquare.classList.add('square');
   }
   for (let i = 0; i < 11; i++) {
-  gameGrid.appendChild(gridSquare.cloneNode(true));
+  mainGrid.appendChild(gridSquare.cloneNode(true));
   gridSquare.classList.add('taken');
   }
   for (let i = 0; i < 16; i++) {
     previewGrid.appendChild(gridSquare.cloneNode(true));
     gridSquare.classList.add('square');
   }
-  gameGrid.children[0].remove();
+  mainGrid.children[0].remove();
 }
 
 // Draw a block
@@ -144,7 +162,6 @@ function previewDraw() {
     previewMatrix[index].style.backgroundColor = colours[previewRandom];
     previewMatrix[index].style.borderColor = colours[previewRandom];
   })
-  // currentBlock = blocks[previewRandom][currentRotation];
 }
 
 // Undraw a block
@@ -191,7 +208,7 @@ function stopMoveDown() {
 }
 
 function startGame() {
-  matrix = Array.from(gameGrid.children);
+  matrix = Array.from(mainGrid.children);
   previewMatrix = Array.from(previewGrid.children);
   draw();
   setInterval(moveDown, 1000);
