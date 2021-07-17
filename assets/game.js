@@ -133,7 +133,12 @@ var currentRotation = 0;
 var random = Math.floor(Math.random()*blocks.length);
 var previewRandom
 var currentBlock = blocks[random][currentRotation];
-
+const highScoreBox = document.getElementById('highScore');
+const currentLevelBox = document.getElementById('currentLevel');
+const currentScoreBox = document.getElementById('currentScore');
+var highScore = 0;
+var currentLevel = 0;
+var currentScore = 0;
 // function to draw out the main and preview grids
 function drawGrids() {
   for (let i = 0; i < 200; i++) {
@@ -211,16 +216,15 @@ function stopMoveDown() {
     currentRotation = 0;
     draw()
     displayPreview()
+    addScore()
   }
 }
 
 function moveLeft () {
   const leftEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 0);
-  const taken = currentBlock.some(index => matrix[currentPosition + index].classList.contains('taken'));
+  const taken = currentBlock.some(index => matrix[currentPosition + index -1].classList.contains('taken'));
   if (leftEdge || taken) {
-    unDraw()
-    currentPosition += 1;
-    draw()
+    return;
   } else {
     unDraw()
     currentPosition -=1;
@@ -230,11 +234,9 @@ function moveLeft () {
 
 function moveRight() {
   const rightEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 9);
-  const taken = currentBlock.some(index => matrix[currentPosition + index].classList.contains('taken'));
+  const taken = currentBlock.some(index => matrix[currentPosition + index + 1].classList.contains('taken'));
   if (rightEdge || taken) {
-    unDraw()
-    currentPosition -= 1;
-    draw()
+    return;
   } else {
     unDraw()
     currentPosition +=1;
@@ -277,6 +279,24 @@ window.addEventListener('keydown', function(event) {
   }
 });
 
+// Scoring function
+function addScore() {
+  for (let i = 0; i < 199; i += gridWidth) {
+    const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9];
+    if (row.every(index => matrix[index].classList.contains('taken'))) {
+      currentScore += 10;
+      currentScoreBox.innerHTML = currentScore;
+      row.forEach(index => {
+        matrix[index].classList.remove('taken', 'block');
+        matrix[index].classList.add('square');
+        matrix[index].removeAttribute('style');
+      })
+      const blocksRemoved = matrix.splice(i, gridWidth);
+      matrix = blocksRemoved.concat(matrix);
+      matrix.forEach(cell => mainGrid.appendChild(cell));
+    }
+  }
+}
 
 // start game function
 function startGame() {
