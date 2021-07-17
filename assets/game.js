@@ -222,7 +222,7 @@ function stopMoveDown() {
 
 function moveLeft () {
   const leftEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 0);
-  const taken = currentBlock.some(index => matrix[currentPosition + index].classList.contains('taken'));
+  const taken = currentBlock.some(index => matrix[currentPosition + index -1].classList.contains('taken'));
   if (leftEdge || taken) {
     return;
   } else {
@@ -234,7 +234,7 @@ function moveLeft () {
 
 function moveRight() {
   const rightEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 9);
-  const taken = currentBlock.some(index => matrix[currentPosition + index].classList.contains('taken'));
+  const taken = currentBlock.some(index => matrix[currentPosition + index + 1].classList.contains('taken'));
   if (rightEdge || taken) {
     return;
   } else {
