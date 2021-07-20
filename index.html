@@ -14,6 +14,7 @@
     <header>
       <h1>Block Puzzle</h1>
       <ul>
+        <li id="rulesButton">How to Play</li>
         <li id="scoreboardButton">Scoreboard</li>
         <li id="contactButton">Contact Us</li>
       </ul>
@@ -25,11 +26,11 @@
     <main>
 
       <section class="left">
-        <button class="button box" type="button" name="controls/rules" id="instructionsButton">How to Play</button>
         <button class="button box" type="button" name="start/pause" id="startButton">Start</button>
       </section>
 
       <section class="centre">
+        <button class="button box" id="startButtonSmall">Start</button>
         <div class="grid-box" id="gameBox"></div>
       </section>
 
@@ -50,14 +51,16 @@
 
       <div class="modal" id="menuModal">
         <div class="modal-content box">
-          <button class="button box" name="start/pause" id="startButtonSmall">Start</button>
-          <button class="button box" name="instructions" id="instructionsButtonSmall">How to Play</button>
-          <button class="button box" name="scoreboard" id="scoreboardButtonSmall">Scoreboard</button>
+          <ul>
+            <li id="rulesButtonSmall">How to Play</li>
+            <li id="scoreboardButtonSmall">Scoreboard</li>
+            <li id="contactButtonSmall">Contact Us</li>
+          </ul>
         </div>
       </div>
       <div class="modal" id="instructionsModal">
         <div class="modal-content box">
-          <span id="close">&times;</span>
+          <span id="closeButton">&times;</span>
           <h2>How to Play</h2>
           <div class="controls">
             <h3>Controls</h3>

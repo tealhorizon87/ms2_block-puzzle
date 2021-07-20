@@ -17,7 +17,6 @@ function makeGrid(className, gridSize, children, parent) {
   });
   return children;
 }
-
 // Event listener to draw the grids when the page has loaded
 window.addEventListener('DOMContentLoaded',
   makeGrid('square', 200, matrix, gameBox),
@@ -26,64 +25,85 @@ window.addEventListener('DOMContentLoaded',
 );
 
 // Button constants
-const instructionsButton = document.getElementById('instructionsButton');
-const scoreboardButton = document.getElementById('scoreboardButton');
-const contactButton = document.getElementById('contactButton');
-const menuButton = document.getElementById('menuButton');
-const closeButton = document.getElementById('close');
-const startPauseButton = document.getElementById('startButton');
-const startButtonSmall = document.getElementById('startButtonSmall');
-const instructionsButtonSmall = document.getElementById('instructionsButtonSmall');
-const scoreboardButtonSmall = document.getElementById('scoreboardButtonSmall');
-const buttons = [
-  instructionsButton,
+const modalButtons = [
+  rulesButton,
   scoreboardButton,
   contactButton,
   menuButton,
-  closeButton,
-  startPauseButton,
+  rulesButtonSmall,
+  scoreboardButtonSmall,
+  contactButtonSmall,
+];
+const startButtons = [
+  startButton,
   startButtonSmall,
-  instructionsButtonSmall,
-  scoreboardButtonSmall
+  playAgainButton
 ];
-
+for (button in modalButtons) {
+  button = document.getElementById('button');
+};
+for (button in startButtons) {
+  button = document.getElementById('button');
+};
+const closeButton = document.getElementById('closeButton');
 // Modal constants
-const instructionsModal = document.getElementById('instructionsModal');
-const contactModal = document.getElementById('contactModal');
-const menuModal = document.getElementById('menuModal');
 const modals = [
-  instructionsModal,
+  rulesModal,
   contactModal,
-  menuModal
+  menuModal,
+  scoreboardModal
 ];
+const eventModals =[
+  rulesModal,
+  scoreboardModal,
+  contactModal,
+  menuModal,
+  rulesModal,
+  scoreboardModal,
+  contactModal
+];
+for (modal in modals) {
+  modal = document.getElementById('modal');
+};
 
-// modal event listeners
-instructionsButton.addEventListener('click', function() {
-  instructionsModal.style.display = 'block';
-})
-contactButton.addEventListener('click', function() {
-  contactModal.style.display = 'block';
-})
-menuButton.addEventListener('click', function() {
-  menuModal.style.display = 'block';
-})
+// button event listeners
+for (let i = 0; i < modalButtons.length; i++) {
+  modalButtons[i].addEventListener('click', function() {
+    eventModals[i].style.display = 'block';
+  })
+};
+for (let i = 0; i < modals.length; i++) {
+  modals[i].addEventListener('click', function() {
+    modals[i].style.display = 'none';
+  })
+};
+for (let i = 0; i < startButtons.length; i++) {
+  startButtons[i].addEventListener('click', startGame)
+};
 closeButton.addEventListener('click', function() {
-  instructionsModal.style.display = 'none';
+  rulesModal.style.display = 'none';
 })
-window.addEventListener('click', function () {
-  if (event.target == instructionsModal) {
-    instructionsModal.style.display = 'none';
+// movement event listeners
+window.addEventListener('keydown', function(event) {
+  switch(event.code) {
+    case 'KeyW':
+    case 'ArrowUp':
+      rotate()
+      break;
+    case 'KeyS':
+    case 'ArrowDown':
+      moveDownFaster()
+      break;
+    case 'KeyA':
+    case 'ArrowLeft':
+      moveLeft();
+      break;
+    case 'KeyD':
+    case 'ArrowRight':
+      moveRight()
+      break;
   }
-  if (event.target == contactModal) {
-    contactModal.style.display = 'none';
-  }
-  if (event.target == menuModal) {
-    menuModal.style.display = 'none';
-  }
-})
-
-// Event listener for the start button in order to start the game
-startPauseButton.addEventListener('click', startGame);
+});
 
 // constants containing the arrays for the blocks and their rotations,
 // an array containing all the blocks and one to contain the preview blocks,
@@ -262,27 +282,6 @@ function moveDownFaster() {
   draw()
   stopMoveDown()
 }
-
-window.addEventListener('keydown', function(event) {
-  switch(event.code) {
-    case 'KeyW':
-    case 'ArrowUp':
-      rotate()
-      break;
-    case 'KeyS':
-    case 'ArrowDown':
-      moveDownFaster()
-      break;
-    case 'KeyA':
-    case 'ArrowLeft':
-      moveLeft();
-      break;
-    case 'KeyD':
-    case 'ArrowRight':
-      moveRight()
-      break;
-  }
-});
 
 // Scoring function
 function addScore() {
