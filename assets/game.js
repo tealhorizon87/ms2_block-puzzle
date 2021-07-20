@@ -227,26 +227,14 @@ function stopMoveDown() {
   }
 }
 
-function moveLeft () {
-  const leftEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 0);
-  const taken = currentBlock.some(index => gameMatrix[currentPosition + index -1].classList.contains('taken'));
-  if (leftEdge || taken) {
+function moveSideways(edgeIndex, takenIncrement, positionIncrement) {
+  let edge = currentBlock.some(index => (currentPosition + index) % gridWidth === edgeIndex);
+  let taken = currentBlock.some(index => gameMatrix[currentPosition + index + takenIncrement].classList.contains('taken'));
+  if (edge || taken) {
     return;
   } else {
     unDraw()
-    currentPosition -=1;
-    draw(currentBlock, gameMatrix, currentPosition, random)
-  }
-}
-
-function moveRight() {
-  const rightEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 9);
-  const taken = currentBlock.some(index => gameMatrix[currentPosition + index + 1].classList.contains('taken'));
-  if (rightEdge || taken) {
-    return;
-  } else {
-    unDraw()
-    currentPosition +=1;
+    currentPosition += positionIncrement;
     draw(currentBlock, gameMatrix, currentPosition, random)
   }
 }
