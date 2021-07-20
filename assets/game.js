@@ -281,7 +281,7 @@ function startGame() {
 }
 
 function gameOver() {
-  if (currentBlock.some(index => matrix[currentPosition].classList.contains('taken'))) {
+  if (currentBlock.some(index => gameMatrix[currentPosition + index].classList.contains('taken'))) {
   clearInterval(timer);
   let gameOverModal = document.getElementById('gameOverModal');
   gameOverModal.style.display = 'block';
