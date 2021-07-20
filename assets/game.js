@@ -139,6 +139,7 @@ const currentScoreBox = document.getElementById('currentScore');
 var highScore = 0;
 var currentLevel = 0;
 var currentScore = 0;
+var timer;
 // function to draw out the main and preview grids
 function drawGrids() {
   for (let i = 0; i < 200; i++) {
@@ -217,6 +218,7 @@ function stopMoveDown() {
     draw()
     displayPreview()
     addScore()
+    gameOver()
   }
 }
 
@@ -303,7 +305,15 @@ function startGame() {
   matrix = Array.from(mainGrid.children);
   previewMatrix = Array.from(previewGrid.children);
   draw();
-  setInterval(moveDown, 1000);
+  timer = setInterval(moveDown, 1000);
   previewRandom = Math.floor(Math.random()*blocks.length);
   displayPreview();
+}
+
+function gameOver() {
+  if (currentBlock.some(index => matrix[currentPosition + index].classList.contains('taken'))) {
+  clearInterval(timer);
+  let gameOverModal = document.getElementById('gameOverModal');
+  gameOverModal.style.display = 'block';
+  }
 }
