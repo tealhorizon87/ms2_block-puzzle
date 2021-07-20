@@ -1,10 +1,29 @@
 // variables and constants used to draw the grids
-const mainGrid = document.getElementById('mainGrid');
-const previewGrid = document.getElementById('previewGrid');
+const gameBox = document.getElementById('gameBox');
+const previewBox = document.getElementById('previewBox');
 const gridSquare = document.createElement('div');
+var matrix = [];
+var previewMatrix = [];
+var takenMatrix = [];
+
+// function to draw the various grids on the page
+function makeGrid(className, gridSize, children, parent) {
+  gridSquare.classList.add(className);
+  for (let i = 0; i < gridSize; i++) {
+    children.push(gridSquare);
+  };
+  children.forEach(child => {
+    parent.appendChild(child.cloneNode(true));
+  });
+  return children;
+}
 
 // Event listener to draw the grids when the page has loaded
-document.addEventListener('DOMContentLoaded', drawGrids);
+window.addEventListener('DOMContentLoaded',
+  makeGrid('square', 200, matrix, gameBox),
+  makeGrid('square', 16, previewMatrix, previewBox),
+  makeGrid('taken', 10, takenMatrix, gameBox)
+);
 
 // Button constants
 const instructionsButton = document.getElementById('instructionsButton');
@@ -140,22 +159,6 @@ var highScore = 0;
 var currentLevel = 0;
 var currentScore = 0;
 var timer;
-// function to draw out the main and preview grids
-function drawGrids() {
-  for (let i = 0; i < 200; i++) {
-    mainGrid.appendChild(gridSquare.cloneNode(true));
-    gridSquare.classList.add('square');
-  }
-  for (let i = 0; i < 11; i++) {
-  mainGrid.appendChild(gridSquare.cloneNode(true));
-  gridSquare.classList.add('taken');
-  }
-  for (let i = 0; i < 16; i++) {
-    previewGrid.appendChild(gridSquare.cloneNode(true));
-    gridSquare.classList.add('square');
-  }
-  mainGrid.children[0].remove();
-}
 
 // Draw a block
 function draw() {

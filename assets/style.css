@@ -132,7 +132,7 @@ main section {
   align-items: center;
 }
 
-#mainGrid {
+#gameBox {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -150,7 +150,7 @@ main section {
   justify-content: center;
 }
 
-#previewGrid {
+#previewBox {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1rem;
