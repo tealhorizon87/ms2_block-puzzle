@@ -96,11 +96,11 @@ window.addEventListener('keydown', function(event) {
       break;
     case 'KeyA':
     case 'ArrowLeft':
-      moveLeft();
+      moveSideways(0, -1, -1);
       break;
     case 'KeyD':
     case 'ArrowRight':
-      moveRight()
+      moveSideways(9, 1, 1);
       break;
   }
 });
@@ -170,10 +170,8 @@ var random = Math.floor(Math.random()*blocks.length);
 var previewRandom
 var currentBlock = blocks[random][currentRotation];
 const highScoreBox = document.getElementById('highScore');
-const currentLevelBox = document.getElementById('currentLevel');
 const currentScoreBox = document.getElementById('currentScore');
 var highScore = 0;
-var currentLevel = 0;
 var currentScore = 0;
 var timer;
 
@@ -255,19 +253,21 @@ function moveDownFaster() {
 
 // Scoring function
 function addScore() {
+  let scoreMultiplier = 1;
   for (let i = 0; i < 199; i += gridWidth) {
     const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9];
-    if (row.every(index => matrix[index].classList.contains('taken'))) {
-      currentScore += 10;
+    if (row.every(index => gameMatrix[index].classList.contains('taken'))) {
+      scoreMultiplier *= 2;
+      currentScore += 10 * scoreMultiplier;
       currentScoreBox.innerHTML = currentScore;
       row.forEach(index => {
-        matrix[index].classList.remove('taken', 'block');
-        matrix[index].classList.add('square');
-        matrix[index].removeAttribute('style');
+        gameMatrix[index].classList.remove('taken', 'block');
+        gameMatrix[index].classList.add('square');
+        gameMatrix[index].removeAttribute('style');
       })
-      const blocksRemoved = matrix.splice(i, gridWidth);
-      matrix = blocksRemoved.concat(matrix);
-      matrix.forEach(cell => gameBox.appendChild(cell));
+      const blocksRemoved = gameMatrix.splice(i, gridWidth);
+      gameMatrix = blocksRemoved.concat(gameMatrix);
+      gameMatrix.forEach(cell => gameBox.appendChild(cell));
     }
   }
 }
@@ -281,7 +281,7 @@ function startGame() {
 }
 
 function gameOver() {
-  if (currentBlock.some(index => matrix[currentPosition + index].classList.contains('taken'))) {
+  if (currentBlock.some(index => matrix[currentPosition].classList.contains('taken'))) {
   clearInterval(timer);
   let gameOverModal = document.getElementById('gameOverModal');
   gameOverModal.style.display = 'block';
