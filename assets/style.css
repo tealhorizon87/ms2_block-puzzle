@@ -129,10 +129,15 @@ main section {
 /* ------------------------------Middle Section */
 .centre {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
-#mainGrid {
+#startButtonSmall {
+  display: none;
+}
+
+#gameBox {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -150,7 +155,7 @@ main section {
   justify-content: center;
 }
 
-#previewGrid {
+#previewBox {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1rem;
@@ -304,10 +309,6 @@ form button {
     justify-content: flex-end;
   }
 
-  #menuModal button {
-    display: block;
-  }
-
   .left {
     display: none;
   }
@@ -319,4 +320,9 @@ form button {
   .right {
     display: none;
   }
+
+  #startButtonSmall {
+   display: block;
+   margin: 0 auto;
+ }
 }

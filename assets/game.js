@@ -1,74 +1,111 @@
 // variables and constants used to draw the grids
-const mainGrid = document.getElementById('mainGrid');
-const previewGrid = document.getElementById('previewGrid');
+const gameBox = document.getElementById('gameBox');
+const previewBox = document.getElementById('previewBox');
 const gridSquare = document.createElement('div');
+var matrix = [];
+var previewMatrix = [];
+var takenMatrix = [];
 
+// function to draw the various grids on the page
+function makeGrid(className, gridSize, children, parent) {
+  gridSquare.classList.add(className);
+  for (let i = 0; i < gridSize; i++) {
+    children.push(gridSquare);
+  };
+  children.forEach(child => {
+    parent.appendChild(child.cloneNode(true));
+  });
+  return children;
+}
 // Event listener to draw the grids when the page has loaded
-document.addEventListener('DOMContentLoaded', drawGrids);
+window.addEventListener('DOMContentLoaded',
+  makeGrid('square', 200, matrix, gameBox),
+  makeGrid('square', 16, previewMatrix, previewBox),
+  makeGrid('taken', 10, takenMatrix, gameBox)
+);
 
 // Button constants
-const instructionsButton = document.getElementById('instructionsButton');
-const scoreboardButton = document.getElementById('scoreboardButton');
-const contactButton = document.getElementById('contactButton');
-const menuButton = document.getElementById('menuButton');
-const closeButton = document.getElementById('close');
-const startPauseButton = document.getElementById('startButton');
-const startButtonSmall = document.getElementById('startButtonSmall');
-const instructionsButtonSmall = document.getElementById('instructionsButtonSmall');
-const scoreboardButtonSmall = document.getElementById('scoreboardButtonSmall');
-const buttons = [
-  instructionsButton,
+const modalButtons = [
+  rulesButton,
   scoreboardButton,
   contactButton,
   menuButton,
-  closeButton,
-  startPauseButton,
+  rulesButtonSmall,
+  scoreboardButtonSmall,
+  contactButtonSmall,
+];
+const startButtons = [
+  startButton,
   startButtonSmall,
-  instructionsButtonSmall,
-  scoreboardButtonSmall
+  playAgainButton
 ];
-
+for (button in modalButtons) {
+  button = document.getElementById('button');
+};
+for (button in startButtons) {
+  button = document.getElementById('button');
+};
+const closeButton = document.getElementById('closeButton');
 // Modal constants
-const instructionsModal = document.getElementById('instructionsModal');
-const contactModal = document.getElementById('contactModal');
-const menuModal = document.getElementById('menuModal');
 const modals = [
-  instructionsModal,
+  rulesModal,
   contactModal,
-  menuModal
+  menuModal,
+  scoreboardModal
 ];
+const eventModals =[
+  rulesModal,
+  scoreboardModal,
+  contactModal,
+  menuModal,
+  rulesModal,
+  scoreboardModal,
+  contactModal
+];
+for (modal in modals) {
+  modal = document.getElementById('modal');
+};
 
-// modal event listeners
-instructionsButton.addEventListener('click', function() {
-  instructionsModal.style.display = 'block';
-})
-contactButton.addEventListener('click', function() {
-  contactModal.style.display = 'block';
-})
-menuButton.addEventListener('click', function() {
-  menuModal.style.display = 'block';
-})
+// button event listeners
+for (let i = 0; i < modalButtons.length; i++) {
+  modalButtons[i].addEventListener('click', function() {
+    eventModals[i].style.display = 'block';
+  })
+};
+for (let i = 0; i < modals.length; i++) {
+  modals[i].addEventListener('click', function() {
+    modals[i].style.display = 'none';
+  })
+};
+for (let i = 0; i < startButtons.length; i++) {
+  startButtons[i].addEventListener('click', startGame)
+};
 closeButton.addEventListener('click', function() {
-  instructionsModal.style.display = 'none';
+  rulesModal.style.display = 'none';
 })
-window.addEventListener('click', function () {
-  if (event.target == instructionsModal) {
-    instructionsModal.style.display = 'none';
+// movement event listeners
+window.addEventListener('keydown', function(event) {
+  switch(event.code) {
+    case 'KeyW':
+    case 'ArrowUp':
+      rotate()
+      break;
+    case 'KeyS':
+    case 'ArrowDown':
+      moveDownFaster()
+      break;
+    case 'KeyA':
+    case 'ArrowLeft':
+      moveSideways(0, -1, -1);
+      break;
+    case 'KeyD':
+    case 'ArrowRight':
+      moveSideways(9, 1, 1);
+      break;
   }
-  if (event.target == contactModal) {
-    contactModal.style.display = 'none';
-  }
-  if (event.target == menuModal) {
-    menuModal.style.display = 'none';
-  }
-})
+});
 
-// Event listener for the start button in order to start the game
-startPauseButton.addEventListener('click', startGame);
-
-// constants containing the arrays for the blocks and their rotations,
-// an array containing all the blocks and one to contain the preview blocks,
-// and an array for the colours
+// constants containing the arrays for the blocks and their rotations
 const gridWidth = 10;
 const previewGridWidth = 4;
 const jBlock = [
@@ -124,123 +161,79 @@ const colours = [
   ['var(--pink-block)'],
   ['var(--red-block)']
 ];
-
 // variables and constants for the main game
-var matrix
-var previewMatrix
+var gameMatrix = Array.from(gameBox.children);
+const miniMatrix = Array.from(previewBox.children);
 var currentPosition = 3;
 var currentRotation = 0;
 var random = Math.floor(Math.random()*blocks.length);
 var previewRandom
 var currentBlock = blocks[random][currentRotation];
 const highScoreBox = document.getElementById('highScore');
-const currentLevelBox = document.getElementById('currentLevel');
 const currentScoreBox = document.getElementById('currentScore');
 var highScore = 0;
-var currentLevel = 0;
 var currentScore = 0;
-// function to draw out the main and preview grids
-function drawGrids() {
-  for (let i = 0; i < 200; i++) {
-    mainGrid.appendChild(gridSquare.cloneNode(true));
-    gridSquare.classList.add('square');
-  }
-  for (let i = 0; i < 11; i++) {
-  mainGrid.appendChild(gridSquare.cloneNode(true));
-  gridSquare.classList.add('taken');
-  }
-  for (let i = 0; i < 16; i++) {
-    previewGrid.appendChild(gridSquare.cloneNode(true));
-    gridSquare.classList.add('square');
-  }
-  mainGrid.children[0].remove();
-}
+var timer;
 
-// Draw a block
-function draw() {
-  currentBlock.forEach(index => {
-    matrix[currentPosition + index].classList.remove('square');
-    matrix[currentPosition + index].classList.add('block');
-    matrix[currentPosition + index].style.backgroundColor = colours[random];
-    matrix[currentPosition + index].style.borderColor = colours[random];
+// Drawing functions
+function draw(whichBlock, setting, position, whichRandom) {
+  whichBlock.forEach(index => {
+    setting[position + index].classList.remove('square');
+    setting[position + index].classList.add('block');
+    setting[position + index].style.backgroundColor = colours[whichRandom];
+    setting[position + index].style.borderColor = colours[whichRandom];
   })
 }
 
-function previewDraw() {
-  previewBlocks[previewRandom].forEach(index => {
-    previewMatrix[index].classList.remove('square');
-    previewMatrix[index].classList.add('block');
-    previewMatrix[index].style.backgroundColor = colours[previewRandom];
-    previewMatrix[index].style.borderColor = colours[previewRandom];
-  })
-}
-
-// Undraw a block
 function unDraw() {
   currentBlock.forEach(index => {
-    matrix[currentPosition + index].classList.remove('block');
-    matrix[currentPosition + index].classList.add('square');
-    matrix[currentPosition + index].removeAttribute('style');
+    gameMatrix[currentPosition + index].classList.remove('block');
+    gameMatrix[currentPosition + index].classList.add('square');
+    gameMatrix[currentPosition + index].removeAttribute('style');
   })
 }
 
-function previewUnDraw() {
-  previewMatrix.forEach(index => {
+function nextBlock() {
+  miniMatrix.forEach(index => {
     index.classList.remove('block');
     index.classList.add('square');
     index.removeAttribute('style');
   })
-}
-
-// Display the next block in the preview grid
-function displayPreview() {
-  previewUnDraw()
-  previewDraw()
+  draw(previewBlocks[previewRandom], miniMatrix, 0, previewRandom)
 }
 
 // movement functions
 function moveDown() {
   unDraw()
   currentPosition += gridWidth;
-  draw()
+  draw(currentBlock, gameMatrix, currentPosition, random)
   stopMoveDown()
 }
 
 function stopMoveDown() {
-  if (currentBlock.some(index => matrix[currentPosition + index + gridWidth].classList.contains('taken'))) {
-    currentBlock.forEach(index => matrix[currentPosition + index].classList.add('taken'));
+  if (currentBlock.some(index => gameMatrix[currentPosition + index + gridWidth].classList.contains('taken'))) {
+    currentBlock.forEach(index => gameMatrix[currentPosition + index].classList.add('taken'));
     random = previewRandom
     previewRandom = Math.floor(Math.random()*blocks.length);
     currentBlock = blocks[random][currentRotation]
     currentPosition = 3;
     currentRotation = 0;
-    draw()
-    displayPreview()
+    draw(currentBlock, gameMatrix, currentPosition, random)
+    nextBlock()
     addScore()
+    gameOver()
   }
 }
 
-function moveLeft () {
-  const leftEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 0);
-  const taken = currentBlock.some(index => matrix[currentPosition + index -1].classList.contains('taken'));
-  if (leftEdge || taken) {
+function moveSideways(edgeIndex, takenIncrement, positionIncrement) {
+  let edge = currentBlock.some(index => (currentPosition + index) % gridWidth === edgeIndex);
+  let taken = currentBlock.some(index => gameMatrix[currentPosition + index + takenIncrement].classList.contains('taken'));
+  if (edge || taken) {
     return;
   } else {
     unDraw()
-    currentPosition -=1;
-    draw()
-  }
-}
-
-function moveRight() {
-  const rightEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 9);
-  const taken = currentBlock.some(index => matrix[currentPosition + index + 1].classList.contains('taken'));
-  if (rightEdge || taken) {
-    return;
-  } else {
-    unDraw()
-    currentPosition +=1;
-    draw()
+    currentPosition += positionIncrement;
+    draw(currentBlock, gameMatrix, currentPosition, random)
   }
 }
 
@@ -248,62 +241,49 @@ function rotate() {
   unDraw()
   currentRotation = (currentRotation + 1) % 4;
   currentBlock = blocks[random][currentRotation];
-  draw()
+  draw(currentBlock, gameMatrix, currentPosition, random)
 }
 
 function moveDownFaster() {
   unDraw()
   currentPosition += gridWidth;
-  draw()
+  draw(currentBlock, gameMatrix, currentPosition, random)
   stopMoveDown()
 }
 
-window.addEventListener('keydown', function(event) {
-  switch(event.code) {
-    case 'KeyW':
-    case 'ArrowUp':
-      rotate()
-      break;
-    case 'KeyS':
-    case 'ArrowDown':
-      moveDownFaster()
-      break;
-    case 'KeyA':
-    case 'ArrowLeft':
-      moveLeft();
-      break;
-    case 'KeyD':
-    case 'ArrowRight':
-      moveRight()
-      break;
-  }
-});
-
 // Scoring function
 function addScore() {
+  let scoreMultiplier = 1;
   for (let i = 0; i < 199; i += gridWidth) {
     const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9];
-    if (row.every(index => matrix[index].classList.contains('taken'))) {
-      currentScore += 10;
+    if (row.every(index => gameMatrix[index].classList.contains('taken'))) {
+      scoreMultiplier *= 2;
+      currentScore += 10 * scoreMultiplier;
       currentScoreBox.innerHTML = currentScore;
       row.forEach(index => {
-        matrix[index].classList.remove('taken', 'block');
-        matrix[index].classList.add('square');
-        matrix[index].removeAttribute('style');
+        gameMatrix[index].classList.remove('taken', 'block');
+        gameMatrix[index].classList.add('square');
+        gameMatrix[index].removeAttribute('style');
       })
-      const blocksRemoved = matrix.splice(i, gridWidth);
-      matrix = blocksRemoved.concat(matrix);
-      matrix.forEach(cell => mainGrid.appendChild(cell));
+      const blocksRemoved = gameMatrix.splice(i, gridWidth);
+      gameMatrix = blocksRemoved.concat(gameMatrix);
+      gameMatrix.forEach(cell => gameBox.appendChild(cell));
     }
   }
 }
 
 // start game function
 function startGame() {
-  matrix = Array.from(mainGrid.children);
-  previewMatrix = Array.from(previewGrid.children);
-  draw();
-  setInterval(moveDown, 1000);
+  draw(currentBlock, gameMatrix, currentPosition, random)
+  timer = setInterval(moveDown, 1000);
   previewRandom = Math.floor(Math.random()*blocks.length);
-  displayPreview();
+  nextBlock();
+}
+
+function gameOver() {
+  if (currentBlock.some(index => matrix[currentPosition].classList.contains('taken'))) {
+  clearInterval(timer);
+  let gameOverModal = document.getElementById('gameOverModal');
+  gameOverModal.style.display = 'block';
+  }
 }
