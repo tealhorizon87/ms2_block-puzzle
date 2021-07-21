@@ -52,7 +52,6 @@ const modals = [
   contactModal,
   menuModal,
   scoreboardModal,
-  gameOverModal
 ];
 const eventModals =[
   rulesModal,

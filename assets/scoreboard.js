@@ -11,5 +11,10 @@ function saveHighScore(event) {
     score: currentScore
   };
   highScores.push(score);
+  highScores.sort((a, b) => a.score - b.score);
+  highScores.splice(5);
+
+  localStorage.setItem('highScores', JSON.stringify(highScores));
+
   console.log(highScores);
 }
