@@ -41,9 +41,9 @@
         </div>
         <div class="scores box">
           <p>High Score:
-            <span id="highScore"></span></p>
+            <span id="highScoreBox"></span></p>
           <p>Score:
-            <span id="currentScore"></span></p>
+            <span id="currentScoreBox"></span></p>
         </div>
       </section>
 
@@ -117,9 +117,11 @@
       <div class="modal" id="gameOverModal">
         <div class="modal-content box">
           <h3>Game Over</h3>
-          <p>
-            Your score was: <span id="finalScore"></span>
-          </p>
+          <p>Your score was: <span id="finalScoreBox"></span></p>
+          <form class="contact-form">
+            <input type="text" name="playerName" placeholder="name" id="playerName" required>
+            <button class="button box" type="submit" id="saveScoreButton">Save</button>
+          </form>
           <button class="button box" id="playAgainButton">Play Again</button>
         </div>
       </div>
@@ -133,6 +135,7 @@
       })();
     </script>
     <script type="text/javascript" src="assets/game.js"></script>
+    <script type="text/javascript" src="assets/scoreboard.js"></script>
     <script type="text/javascript" src="assets/email.js"></script>
   </body>
 </html>
