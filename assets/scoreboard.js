@@ -1,8 +1,24 @@
+// constants relating to the scoreboard
 const saveScoreButton = document.getElementById('saveScoreButton');
+const highScoreBox = document.getElementById('highScoreBox');
+const scoreboardListBox = document.getElementById('scoreboardListBox');
+var scoreboardEntry = document.createElement('li');
+// constant that will either load the array from local or an empty array
 const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
 
+// populates the highscore section with the highest saved score
+highScoreBox. innerHTML = `${highScores[0].name} - ${highScores[0].score}`
+
+// populates the scoreboard modal with the top 10 scores
+for (entry in highScores) {
+    scoreboardEntry.textContent = `${highScores[entry].name} - ${highScores[entry].score}`;
+    scoreboardListBox.appendChild(scoreboardEntry.cloneNode(true));
+};
+
+// event listener to start the score saving function
 saveScoreButton.addEventListener('click', saveHighScore);
 
+// function to save the scores
 function saveHighScore(event) {
   event.preventDefault();
 
@@ -10,11 +26,10 @@ function saveHighScore(event) {
     name: playerName.value,
     score: currentScore
   };
+
   highScores.push(score);
-  highScores.sort((a, b) => a.score - b.score);
-  highScores.splice(5);
+  highScores.sort((a, b) => b.score - a.score);
+  highScores.splice(10);
 
   localStorage.setItem('highScores', JSON.stringify(highScores));
-
-  console.log(highScores);
 }
