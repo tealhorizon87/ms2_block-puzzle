@@ -51,7 +51,8 @@ const modals = [
   rulesModal,
   contactModal,
   menuModal,
-  scoreboardModal
+  scoreboardModal,
+  gameOverModal
 ];
 const eventModals =[
   rulesModal,
@@ -169,8 +170,9 @@ var currentRotation = 0;
 var random = Math.floor(Math.random()*blocks.length);
 var previewRandom
 var currentBlock = blocks[random][currentRotation];
-const highScoreBox = document.getElementById('highScore');
-const currentScoreBox = document.getElementById('currentScore');
+const highScoreBox = document.getElementById('highScoreBox');
+const currentScoreBox = document.getElementById('currentScoreBox');
+const finalScoreBox = document.getElementById('finalScoreBox');
 var highScore = 0;
 var currentScore = 0;
 var timer;
@@ -285,5 +287,6 @@ function gameOver() {
   clearInterval(timer);
   let gameOverModal = document.getElementById('gameOverModal');
   gameOverModal.style.display = 'block';
+  finalScoreBox.innerHTML = currentScore;
   }
 }
