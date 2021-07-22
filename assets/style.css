@@ -31,6 +31,12 @@ h6 {
 }
 
 /* --------------------------------General Styles */
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .box {
   background-color: var(--dark-blue);
   color: var(--light-blue);
@@ -75,7 +81,6 @@ h6 {
 }
 /* ---------------------------------------Header */
 header {
-  margin-bottom: 1rem;
   padding: 1rem 0;
 }
 
@@ -104,37 +109,32 @@ header li:hover {
 
 .menu-icon {
   display: none;
+  margin: 0;
+  font-size: 1.5rem;
 }
 
 /* ---------------------------------------Main */
 main {
   display: flex;
-  flex-wrap: wrap;
-  height: 80vh;
+  justify-content: space-between;
 }
 
-main section {
-  width: 30vw;
+.col {
+  flex: 1;
+  width: 30%;
   max-width: 480px;
+  padding: 0 1rem;
 }
 
 /* ------------------------------Left Section */
 .left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: flex-end;
 }
 
 /* ------------------------------Middle Section */
-.centre {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 #startButtonSmall {
   display: none;
+  margin: 0 auto;
 }
 
 #gameBox {
@@ -149,9 +149,9 @@ main section {
 }
 
 .touch-controls {
+  display: none;
   text-align: center;
   font-size: 2rem;
-  display: none;
 }
 
 .touch-controls i {
@@ -160,12 +160,6 @@ main section {
 }
 
 /* ------------------------------Right Section */
-.right {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 #previewBox {
   display: flex;
   flex-wrap: wrap;
@@ -177,7 +171,8 @@ main section {
 .scores {
   margin-top: 1rem;
   padding: 0 1rem;
-  width: 50%;
+  width: 100%;
+  max-width: 180px;
 }
 
 /* ------------------------------------Modals */
@@ -186,7 +181,6 @@ main section {
   position: fixed;
   z-index: 1;
   top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -198,24 +192,54 @@ main section {
   max-width: 50vw;
 }
 
-.modal-content > * {
+/* .modal-content > * {
   margin: 1rem auto;
-  padding: 0 1rem;
-}
+  padding: 0 2rem;
+} */
 
-#close {
+#closeButton {
   margin: 0;
+  padding: 0 1rem;
   color: var(--light-blue);
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-#close:hover,
-#close:focus {
+#closeButton:hover,
+#closeButton:focus {
   color: var(--mid-blue);
   text-decoration: none;
   cursor: pointer;
+}
+
+/* -------------------------------------Rules Modal */
+.rules-box {
+  margin: 1rem;
+}
+
+.rules, .controls {
+  margin-bottom: 1rem;
+}
+
+.rules-box h2 {
+  margin-bottom: 1rem;
+  font-size: 125%;
+}
+
+.rules-box h3 {
+  text-decoration: underline;
+  margin-bottom: 0.5rem;
+}
+
+.rules-box p {
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.rules-box li {
+  list-style: disc;
+  margin-left: 3rem;
 }
 
 /* ------------------------------------Contact Form */
@@ -312,7 +336,8 @@ form button {
 
 @media screen and (max-width: 450px) {
   header {
-    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
   }
 
   h1 {
@@ -323,10 +348,17 @@ form button {
     display: none;
   }
 
+  li {
+    padding: 0.5rem 0;
+  }
+
+  #menuModal .modal-content {
+    width: 50vw;
+    text-align: center;
+  }
+
   .menu-icon {
     display: block;
-    font-size: 1.5rem;
-    justify-content: flex-end;
   }
 
   .left {
@@ -343,6 +375,5 @@ form button {
 
   #startButtonSmall {
    display: block;
-   margin: 0 auto;
  }
 }
