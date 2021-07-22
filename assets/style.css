@@ -17,6 +17,8 @@ body {
   font-weight: bold;
   color: var(--light-blue);
   background-color: var(--mid-blue);
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 h1,
@@ -73,20 +75,18 @@ h6 {
 }
 /* ---------------------------------------Header */
 header {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  padding: 1rem 0;
 }
 
 h1 {
+  display: inline-block;
   font-size: 3rem;
-  margin: 0 auto;
+  margin: 0 2rem;
 }
 
 header ul {
-  list-style: none;
-  margin-bottom: 0;
+  display: inline-block;
 }
 
 header li {
@@ -115,7 +115,7 @@ main {
 
 main section {
   width: 30vw;
-  margin: 0 auto;
+  max-width: 480px;
 }
 
 /* ------------------------------Left Section */
