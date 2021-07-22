@@ -192,11 +192,6 @@ main {
   max-width: 50vw;
 }
 
-/* .modal-content > * {
-  margin: 1rem auto;
-  padding: 0 2rem;
-} */
-
 #closeButton {
   margin: 0;
   padding: 0 1rem;
@@ -240,6 +235,23 @@ main {
 .rules-box li {
   list-style: disc;
   margin-left: 3rem;
+}
+
+/* --------------------------------Scoreboard Modal */
+.scoreboard-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30vw;
+  min-width: 300px;
+}
+
+.scoreboard-box h3 {
+  margin: 1rem 0;
+}
+
+.scoreboard-box ol {
+  margin-bottom: 1rem;
 }
 
 /* ------------------------------------Contact Form */
