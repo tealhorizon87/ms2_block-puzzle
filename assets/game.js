@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded',
 );
 
 // Button constants
-const modalButtons = [
+const buttons = [
   rulesButton,
   scoreboardButton,
   contactButton,
@@ -33,20 +33,34 @@ const modalButtons = [
   rulesButtonSmall,
   scoreboardButtonSmall,
   contactButtonSmall,
+  startButton,
+  startButtonSmall,
+  playAgainButton,
+  closeButton,
+  leftArrow,
+  rightArrow,
+  upArrow,
+  downArrow
+];
+for (button in buttons) {
+  button = document.getElementById('button');
+};
+
+// Modal constants
+const modalButtons = [
+  rulesButton,
+  scoreboardButton,
+  contactButton,
+  menuButton,
+  rulesButtonSmall,
+  scoreboardButtonSmall,
+  contactButtonSmall
 ];
 const startButtons = [
   startButton,
   startButtonSmall,
   playAgainButton
 ];
-for (button in modalButtons) {
-  button = document.getElementById('button');
-};
-for (button in startButtons) {
-  button = document.getElementById('button');
-};
-const closeButton = document.getElementById('closeButton');
-// Modal constants
 const modals = [
   rulesModal,
   contactModal,
@@ -104,6 +118,15 @@ window.addEventListener('keydown', function(event) {
       break;
   }
 });
+// touch control event listeners
+leftArrow.addEventListener('click', function() {
+  moveSideways(0, -1, -1);
+});
+rightArrow.addEventListener('click', function() {
+  moveSideways(9, 1, 1);
+});
+upArrow.addEventListener('click', rotate);
+downArrow.addEventListener('click', moveDownFaster);
 
 // constants containing the arrays for the blocks and their rotations
 const gridWidth = 10;
