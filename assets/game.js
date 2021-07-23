@@ -36,7 +36,10 @@ const buttons = [
   startButton,
   startButtonSmall,
   playAgainButton,
-  closeButton,
+  rulesCloseButton,
+  contactCloseButton,
+  scoreboardCloseButton,
+  gameOverCloseButton,
   leftArrow,
   rightArrow,
   upArrow,
@@ -47,6 +50,18 @@ for (button in buttons) {
 };
 
 // Modal constants
+const modals = [
+  rulesModal,
+  menuModal,
+  scoreboardModal,
+  gameOverModal,
+  contactModal
+];
+for (modal in modals) {
+  modal = document.getElementById('modal');
+};
+
+// button and modal arrays for mapping event listeners
 const modalButtons = [
   rulesButton,
   scoreboardButton,
@@ -61,11 +76,17 @@ const startButtons = [
   startButtonSmall,
   playAgainButton
 ];
-const modals = [
+const closeButtons = [
+  rulesCloseButton,
+  scoreboardCloseButton,
+  contactCloseButton,
+  gameOverCloseButton
+];
+const closeButtonModals = [
   rulesModal,
+  scoreboardModal,
   contactModal,
-  menuModal,
-  scoreboardModal
+  gameOverModal
 ];
 const eventModals =[
   rulesModal,
@@ -74,11 +95,8 @@ const eventModals =[
   menuModal,
   rulesModal,
   scoreboardModal,
-  contactModal
+  contactModal,
 ];
-for (modal in modals) {
-  modal = document.getElementById('modal');
-};
 
 // button event listeners
 for (let i = 0; i < modalButtons.length; i++) {
@@ -86,7 +104,7 @@ for (let i = 0; i < modalButtons.length; i++) {
     eventModals[i].style.display = 'block';
   })
 };
-for (let i = 0; i < modals.length; i++) {
+for (let i = 0; i < 3; i++) {
   modals[i].addEventListener('click', function() {
     modals[i].style.display = 'none';
   })
@@ -94,9 +112,12 @@ for (let i = 0; i < modals.length; i++) {
 for (let i = 0; i < startButtons.length; i++) {
   startButtons[i].addEventListener('click', startGame)
 };
-closeButton.addEventListener('click', function() {
-  rulesModal.style.display = 'none';
-})
+for (let i = 0; i < closeButtons.length; i++) {
+  closeButtons[i].addEventListener('click', function() {
+    closeButtonModals[i].style.display = 'none'
+  })
+};
+
 // movement event listeners
 window.addEventListener('keydown', function(event) {
   switch(event.code) {
