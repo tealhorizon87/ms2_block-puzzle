@@ -7,10 +7,20 @@ function sendMail(contactForm) {
   })
   .then(
     function(response) {
-      console.log('success', response);
+      alert('Yor feedback has been sent');
+      clearForm()
+      return response;
     },
     function(error) {
-      console.log('failed', error);
+      alert("I'm sorry, something went wrong! Please try again");
+      return error;
     });
   return false;
+}
+
+function clearForm() {
+  document.getElementsByTagName('input').value = '';
+  document.getElementsByTagName('textarea').value = '';
+  document.getElementsByTagName('select').value = '';
+  contactModal.style.display = 'none';
 }
