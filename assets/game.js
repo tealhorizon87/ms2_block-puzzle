@@ -117,7 +117,9 @@ for (let i = 0; i < closeButtons.length; i++) {
     closeButtonModals[i].style.display = 'none'
   })
 };
-
+playAgainButton.addEventListener('click', function() {
+  gameOverModal.style.display = 'none';
+})
 // movement event listeners
 window.addEventListener('keydown', function(event) {
   switch(event.code) {
@@ -327,7 +329,11 @@ function startGame() {
 function gameOver() {
   if (currentBlock.some(index => gameMatrix[currentPosition + index].classList.contains('taken'))) {
   clearInterval(timer);
-  let gameOverModal = document.getElementById('gameOverModal');
+  for (let i = 0; i < 200; i++) {
+    gameMatrix[i].classList.remove('block', 'taken');
+    gameMatrix[i].classList.add('square');
+    gameMatrix[i].removeAttribute('style');
+  };
   gameOverModal.style.display = 'block';
   finalScoreBox.innerHTML = currentScore;
   }
