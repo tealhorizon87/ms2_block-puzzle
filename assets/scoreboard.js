@@ -4,7 +4,9 @@ const highScoreBox = document.getElementById('highScoreBox');
 const scoreboardListBox = document.getElementById('scoreboardListBox');
 var scoreboardEntry = document.createElement('li');
 // constant that will either load the array from local or an empty array
-const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+const highScores = JSON.parse(localStorage.getItem('highScores')) || [
+  {name: name, score: 0}
+];
 
 // populates the highscore section with the highest saved score
 highScoreBox. innerHTML = `${highScores[0].name} - ${highScores[0].score}`

@@ -51,6 +51,19 @@ section {
   border-radius: 5px;
 }
 
+.square {
+  height: 28px;
+  width: 28px;
+  background-color: var(--dark-blue);
+  border: 1px solid #4079e233;
+}
+
+.block {
+  width: 24px;
+  height: 24px;
+  border: 3px outset;
+}
+
 .button {
   padding: 0.5rem 2rem;
   font-family: inherit;
@@ -65,18 +78,6 @@ section {
   cursor: pointer;
 }
 
-.square {
-  height: 28px;
-  width: 28px;
-  background-color: var(--dark-blue);
-  border: 1px solid #4079e233;
-}
-
-.block {
-  width: 24px;
-  height: 24px;
-  border: 3px outset;
-}
 /* ---------------------------------------Header */
 header {
   padding: 1rem 0;
@@ -130,6 +131,10 @@ main {
 }
 
 /* ------------------------------Middle Section */
+.centre {
+  min-width: 320px;
+}
+
 #startButtonSmall {
   display: none;
   margin: 0 auto;
@@ -147,14 +152,12 @@ main {
 }
 
 .touch-controls {
-  display: none;
   text-align: center;
   font-size: 2rem;
 }
 
 .touch-controls i {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding: 0 1rem;
 }
 
 /* ------------------------------Right Section */
@@ -169,7 +172,7 @@ main {
 .scores {
   margin-top: 1rem;
   padding: 0 1rem;
-  width: 100%;
+  width: 80%;
   max-width: 180px;
 }
 
@@ -257,6 +260,17 @@ main {
   padding: 0.25rem 0;
 }
 
+/* ---------------------------=-----Game over Modal */
+#gameOverModal p {
+  margin-left: 1rem;
+}
+
+.play-again {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
 /* ------------------------------------Contact Form */
 #contactModal p {
   margin: 1rem auto;
@@ -289,90 +303,18 @@ form button {
 }
 
 /* -----------------------------Media Queries */
-@media screen and (max-width: 1024px) {
-  .left {
-    width: 25%;
-  }
-
-  .centre {
-    width: 50%;
-  }
-
-  .right {
-    width: 25%;
-  }
-}
-
-@media screen and (max-width: 680px) {
-  header {
-    align-items: center;
-  }
-
-  header li {
-    display: block;
-  }
-
-  .left {
-    width: 20%;
-  }
-
-  .centre {
-    width: 60%;
-  }
-
-  .right {
-    width: 20%;
-  }
-
-  #gameBox {
-    height: 400px;
-    width: 200px;
-  }
-
-  .square {
-    height: 18px;
-    width: 18px;
-    background-color: var(--dark-blue);
-    border: 1px solid #4079e233;
-  }
-
-  .block {
-    width: 14px;
-    height: 14px;
-    border: 3px outset;
-  }
-
-  .touch-controls {
-    display: block;
-  }
-
-  .button {
-    font-size: 1rem;
-  }
-
-  .modal-content {
-    max-width: 80vw;
-    max-height: 50vh;
-    overflow-y: scroll;
-  }
-}
-
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 770px) {
   header {
     display: flex;
     justify-content: space-between;
-  }
-
-  h1 {
-    font-size: 2rem;
   }
 
   header ul {
     display: none;
   }
 
-  li {
-    padding: 0.5rem 0;
+  .menu-icon {
+    display: block;
   }
 
   #menuModal .modal-content {
@@ -380,10 +322,30 @@ form button {
     text-align: center;
   }
 
-  .menu-icon {
-    display: block;
+  .modal-content {
+    max-width: 80vw;
+    max-height: 50vh;
+    overflow-y: scroll;
   }
 
+  li {
+    padding: 0.5rem 0;
+  }
+
+  main {
+    margin-top: 5rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 2rem;
+    margin-right: 0;
+  }
+
+  main {
+    margin: 0;
+  }
   .left {
     display: none;
   }
