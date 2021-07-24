@@ -1,6 +1,6 @@
 # Block Puzzle
 
-Block puzzle is a geometric tile-matching game based on Tetris. This project is the second milestone project as part of the Code Institute Diploma course.
+Block puzzle is a geometric tile-matching game based on Tetris. This project is the second milestone project as part of the Code Institute Diploma course. The deployed site can be viewed [here](https://tealhorizon87.github.io/ms2_block-puzzle/)
 
 ## Table of Contents
 1. [UX](#ux)
