@@ -11,7 +11,7 @@ function makeGrid(className, gridSize, children, parent) {
   gridSquare.classList.add(className);
   for (let i = 0; i < gridSize; i++) {
     children.push(gridSquare);
-  };
+  }
   children.forEach(child => {
     parent.appendChild(child.cloneNode(true));
   });
@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded',
   makeGrid('taken', 10, takenMatrix, gameBox)
 );
 
-// Button constants
+// Arrays containing the full list of buttons and modals for operation in the definition function
 const buttons = [
   rulesButton,
   scoreboardButton,
@@ -45,11 +45,6 @@ const buttons = [
   upArrow,
   downArrow
 ];
-for (button in buttons) {
-  button = document.getElementById('button');
-};
-
-// Modal constants
 const modals = [
   rulesModal,
   menuModal,
@@ -57,9 +52,13 @@ const modals = [
   gameOverModal,
   contactModal
 ];
+
+for (button in buttons) {
+  button = document.getElementById('button');
+}
 for (modal in modals) {
   modal = document.getElementById('modal');
-};
+}
 
 // button and modal arrays for mapping event listeners
 const modalButtons = [
@@ -102,34 +101,34 @@ const eventModals =[
 for (let i = 0; i < modalButtons.length; i++) {
   modalButtons[i].addEventListener('click', function() {
     eventModals[i].style.display = 'block';
-  })
-};
+  });
+}
 for (let i = 0; i < 3; i++) {
   modals[i].addEventListener('click', function() {
     modals[i].style.display = 'none';
-  })
-};
+  });
+}
 for (let i = 0; i < startButtons.length; i++) {
-  startButtons[i].addEventListener('click', startGame)
-};
+  startButtons[i].addEventListener('click', startGame);
+}
 for (let i = 0; i < closeButtons.length; i++) {
   closeButtons[i].addEventListener('click', function() {
-    closeButtonModals[i].style.display = 'none'
-  })
-};
+    closeButtonModals[i].style.display = 'none';
+  });
+}
 playAgainButton.addEventListener('click', function() {
   gameOverModal.style.display = 'none';
-})
+});
 // movement event listeners
 window.addEventListener('keydown', function(event) {
   switch(event.code) {
     case 'KeyW':
     case 'ArrowUp':
-      rotate()
+      rotate();
       break;
     case 'KeyS':
     case 'ArrowDown':
-      moveDownFaster()
+      moveDownFaster();
       break;
     case 'KeyA':
     case 'ArrowLeft':
@@ -213,11 +212,10 @@ const miniMatrix = Array.from(previewBox.children);
 var currentPosition = 3;
 var currentRotation = 0;
 var random = Math.floor(Math.random()*blocks.length);
-var previewRandom
+var previewRandom;
 var currentBlock = blocks[random][currentRotation];
 const currentScoreBox = document.getElementById('currentScoreBox');
 const finalScoreBox = document.getElementById('finalScoreBox');
-var highScore = 0;
 var currentScore = 0;
 var timer;
 
@@ -228,7 +226,7 @@ function draw(whichBlock, setting, position, whichRandom) {
     setting[position + index].classList.add('block');
     setting[position + index].style.backgroundColor = colours[whichRandom];
     setting[position + index].style.borderColor = colours[whichRandom];
-  })
+  });
 }
 
 function unDraw() {
@@ -236,7 +234,7 @@ function unDraw() {
     gameMatrix[currentPosition + index].classList.remove('block');
     gameMatrix[currentPosition + index].classList.add('square');
     gameMatrix[currentPosition + index].removeAttribute('style');
-  })
+  });
 }
 
 function nextBlock() {
@@ -244,30 +242,30 @@ function nextBlock() {
     index.classList.remove('block');
     index.classList.add('square');
     index.removeAttribute('style');
-  })
-  draw(previewBlocks[previewRandom], miniMatrix, 0, previewRandom)
+  });
+  draw(previewBlocks[previewRandom], miniMatrix, 0, previewRandom);
 }
 
 // movement functions
 function moveDown() {
-  unDraw()
+  unDraw();
   currentPosition += gridWidth;
-  draw(currentBlock, gameMatrix, currentPosition, random)
-  stopMoveDown()
+  draw(currentBlock, gameMatrix, currentPosition, random);
+  stopMoveDown();
 }
 
 function stopMoveDown() {
   if (currentBlock.some(index => gameMatrix[currentPosition + index + gridWidth].classList.contains('taken'))) {
     currentBlock.forEach(index => gameMatrix[currentPosition + index].classList.add('taken'));
-    random = previewRandom
+    random = previewRandom;
     previewRandom = Math.floor(Math.random()*blocks.length);
-    currentBlock = blocks[random][currentRotation]
+    currentBlock = blocks[random][currentRotation];
     currentPosition = 3;
     currentRotation = 0;
-    draw(currentBlock, gameMatrix, currentPosition, random)
-    nextBlock()
-    addScore()
-    gameOver()
+    draw(currentBlock, gameMatrix, currentPosition, random);
+    nextBlock();
+    addScore();
+    gameOver();
   }
 }
 
@@ -277,24 +275,24 @@ function moveSideways(edgeIndex, takenIncrement, positionIncrement) {
   if (edge || taken) {
     return;
   } else {
-    unDraw()
+    unDraw();
     currentPosition += positionIncrement;
-    draw(currentBlock, gameMatrix, currentPosition, random)
+    draw(currentBlock, gameMatrix, currentPosition, random);
   }
 }
 
 function rotate() {
-  unDraw()
+  unDraw();
   currentRotation = (currentRotation + 1) % 4;
   currentBlock = blocks[random][currentRotation];
-  draw(currentBlock, gameMatrix, currentPosition, random)
+  draw(currentBlock, gameMatrix, currentPosition, random);
 }
 
 function moveDownFaster() {
-  unDraw()
+  unDraw();
   currentPosition += gridWidth;
-  draw(currentBlock, gameMatrix, currentPosition, random)
-  stopMoveDown()
+  draw(currentBlock, gameMatrix, currentPosition, random);
+  stopMoveDown();
 }
 
 // Scoring function
@@ -310,7 +308,7 @@ function addScore() {
         gameMatrix[index].classList.remove('taken', 'block');
         gameMatrix[index].classList.add('square');
         gameMatrix[index].removeAttribute('style');
-      })
+      });
       const blocksRemoved = gameMatrix.splice(i, gridWidth);
       gameMatrix = blocksRemoved.concat(gameMatrix);
       gameMatrix.forEach(cell => gameBox.appendChild(cell));
@@ -320,7 +318,7 @@ function addScore() {
 
 // start game function
 function startGame() {
-  draw(currentBlock, gameMatrix, currentPosition, random)
+  draw(currentBlock, gameMatrix, currentPosition, random);
   timer = setInterval(moveDown, 1000);
   previewRandom = Math.floor(Math.random()*blocks.length);
   nextBlock();
@@ -333,7 +331,7 @@ function gameOver() {
     gameMatrix[i].classList.remove('block', 'taken');
     gameMatrix[i].classList.add('square');
     gameMatrix[i].removeAttribute('style');
-  };
+  }
   gameOverModal.style.display = 'block';
   finalScoreBox.innerHTML = currentScore;
   }

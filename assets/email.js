@@ -8,7 +8,7 @@ function sendMail(contactForm) {
   .then(
     function(response) {
       alert('Yor feedback has been sent');
-      clearForm()
+      clearForm();
       return response;
     },
     function(error) {

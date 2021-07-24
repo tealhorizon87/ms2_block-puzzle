@@ -9,14 +9,14 @@ const highScores = JSON.parse(localStorage.getItem('highScores')) || [
 ];
 
 // populates the highscore section with the highest saved score
-highScoreBox. innerHTML = `${highScores[0].name} - ${highScores[0].score}`
+highScoreBox. innerHTML = `${highScores[0].name} - ${highScores[0].score}`;
 
 // populates the scoreboard modal with the top 10 scores
 function tabulateScores() {
   for (entry in highScores) {
       scoreboardEntry.textContent = `${highScores[entry].name} - ${highScores[entry].score}`;
       scoreboardListBox.appendChild(scoreboardEntry.cloneNode(true));
-  };
+  }
 }
 
 // event listener to start the score saving function
@@ -36,5 +36,5 @@ function saveHighScore(event) {
   highScores.splice(10);
 
   localStorage.setItem('highScores', JSON.stringify(highScores));
-  highScoreBox. innerHTML = `${highScores[0].name} - ${highScores[0].score}`
+  highScoreBox. innerHTML = `${highScores[0].name} - ${highScores[0].score}`;
 }
