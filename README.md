@@ -86,6 +86,31 @@ Below are the wireframes for large, medium and small sized screens. There were c
 ## Testing
 
 ## Deployment
+### GitHub Pages
+Deployment for this project is via GitHub Pages.
+1. From the repository home page, select the 'settings' tab
+2. Scroll down the menu on the left and select 'pages'
+3. From the dropdown menu under 'source', select the branch that you wish to publish (usually master or main)
+4. Make sure that the root folder is selected and click save
+5. A URL will then be displayed for the project that you can copy into other locations, or just follow to the live page.
+
+Bear in mind that it takes up to 10 minutes for the build process so the page may not be available straight away.
+
+### Forking the Repository
+If you would like to view/change the code for the project then you can copy this repository to your GitHub account by forking it. You will then be able to do this without affecting the original repository:
+1. From the repository home page,  click the 'fork' button (just below your picture with the dropdown menu)
+2. You should now have a copy of the repository on your account
+
+### Making a Local Clone
+1. From the repository home page, select the 'code' tab (next to the green 'Gitpod' button)
+2. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+3. Open Git Bash
+4. Change the current working directory to the location where you want the cloned directory to be made.
+5. Type 'git clone', and then paste the URL you copied in Step 2.
+6. Press Enter. Your local clone will be created.
+7. Alternatively, you can use 'Open with GitHub Desktop' and follow the instructions, or just download the ZIP file containing the code files
+
+Click [Here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository#cloning-a-repository-to-github-desktop) to view the GitHub documentation on deployment for further help and advice.
 
 ## Credits
 
