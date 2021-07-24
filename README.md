@@ -13,7 +13,6 @@ Block puzzle is a geometric tile-matching game based on Tetris. This project is 
 5. [Deployment](#deployment)
 6. [Credits](#credits)
     - [Content](#content)
-    - [Media](#media)
     - [Acknowledgements](#acknowledgements)
 
 ## UX

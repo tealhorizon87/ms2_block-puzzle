@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Geo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/reset.css">
     <link rel="stylesheet" href="assets/style.css">
@@ -126,7 +126,7 @@
       </div>
       <div class="modal" id="gameOverModal">
         <div class="modal-content box">
-          <span class="close-button"id="gameOverCloseButton">&times;</span>
+          <span class="close-button" id="gameOverCloseButton">&times;</span>
           <h2>Game Over</h2>
           <p>Your score was: <span id="finalScoreBox"></span></p>
           <form class="contact-form">
@@ -141,14 +141,14 @@
 
     </main>
     <script src="https://kit.fontawesome.com/b0451faeb3.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-    <script type="text/javascript">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script>
       (function(){
         emailjs.init("user_IW6Pwsm8AWLFCD87hj6JH");
       })();
     </script>
-    <script type="text/javascript" src="assets/game.js"></script>
-    <script type="text/javascript" src="assets/scoreboard.js"></script>
-    <script type="text/javascript" src="assets/email.js"></script>
+    <script src="assets/game.js"></script>
+    <script src="assets/scoreboard.js"></script>
+    <script src="assets/email.js"></script>
   </body>
 </html>
