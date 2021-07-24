@@ -115,5 +115,13 @@ Click [Here](https://docs.github.com/en/github/creating-cloning-and-archiving-re
 ## Credits
 
 ### Content
-### Media
+  - The CSS reset page was taken from [here](https://meyerweb.com/eric/tools/css/reset/)
+  - All other code was written by myself, but with inspiration taken from the following sources:
+    - [kubowania](https://github.com/kubowania/Tetris-Basic) via the associated [YouTube](https://www.youtube.com/watch?v=rAUn1Lom6dw&list=WL&index=4) video - this provided the basic structural inspiration for the code
+    - [jamesqquick](https://github.com/jamesqquick/Build-A-Quiz-App-With-HTML-CSS-and-JavaScript) and the associated [YouTube](https://www.youtube.com/watch?v=DFhmNLKwwGw&list=WL&index=6&t=459s) to help understand how to set up the local storage code
+
 ### Acknowledgements
+  - Thanks to my mentor for help, guidance and support during this project as always
+  - [MDN Web Docs](https://developer.mozilla.org/en-US/) - an essential source of support for any developer.
+  - [Stack Overflow](https://stackoverflow.com/) - much like w3schools, an essential source of guidance...there is always someone who has had the same problem, and the answer is likely here.
+  - [Code Institute](https://codeinstitute.net/) - from inspiration through all the walkthrough projects to the tools needed to complete.
