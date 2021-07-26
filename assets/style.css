@@ -337,6 +337,44 @@ form button {
   }
 }
 
+@media screen and (max-width: 650px) {
+  .square {
+    height: 18px;
+    width: 18px;
+    background-color: var(--dark-blue);
+    border: 1px solid #4079e233;
+  }
+
+  .block {
+    width: 14px;
+    height: 14px;
+    border: 3px outset;
+  }
+
+  .centre {
+    min-width: 220px;
+  }
+
+  #gameBox {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem auto;
+    height: 400px;
+    width: 200px;
+    border: 3px ridge var(--light-blue);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  #previewBox {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    height: 80px;
+    width: 80px;
+  }
+}
+
 @media screen and (max-width: 450px) {
   h1 {
     font-size: 2rem;
