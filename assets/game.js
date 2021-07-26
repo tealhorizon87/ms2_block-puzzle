@@ -128,7 +128,7 @@ window.addEventListener('keydown', function(event) {
       break;
     case 'KeyS':
     case 'ArrowDown':
-      moveDownFaster();
+      moveDown();
       break;
     case 'KeyA':
     case 'ArrowLeft':
@@ -148,7 +148,7 @@ rightArrow.addEventListener('click', function() {
   moveSideways(9, 1, 1);
 });
 upArrow.addEventListener('click', rotate);
-downArrow.addEventListener('click', moveDownFaster);
+downArrow.addEventListener('click', moveDown);
 
 // constants containing the arrays for the blocks and their rotations
 const gridWidth = 10;
@@ -218,6 +218,7 @@ const currentScoreBox = document.getElementById('currentScoreBox');
 const finalScoreBox = document.getElementById('finalScoreBox');
 var currentScore = 0;
 var timer;
+var timeincrement = 1000;
 
 // Drawing functions
 function draw(whichBlock, setting, position, whichRandom) {
@@ -262,7 +263,10 @@ function stopMoveDown() {
     currentBlock = blocks[random][currentRotation];
     currentPosition = 3;
     currentRotation = 0;
+    clearInterval(timer);
+    timeincrement -= 5;
     draw(currentBlock, gameMatrix, currentPosition, random);
+    timer = setInterval(moveDown, timeincrement);
     nextBlock();
     addScore();
     gameOver();
@@ -286,13 +290,6 @@ function rotate() {
   currentRotation = (currentRotation + 1) % 4;
   currentBlock = blocks[random][currentRotation];
   draw(currentBlock, gameMatrix, currentPosition, random);
-}
-
-function moveDownFaster() {
-  unDraw();
-  currentPosition += gridWidth;
-  draw(currentBlock, gameMatrix, currentPosition, random);
-  stopMoveDown();
 }
 
 // Scoring function
@@ -326,7 +323,7 @@ function startGame() {
     });
   } else {
     draw(currentBlock, gameMatrix, currentPosition, random);
-    timer = setInterval(moveDown, 1000);
+    timer = setInterval(moveDown, timeincrement);
     previewRandom = Math.floor(Math.random()*blocks.length);
     nextBlock();
     startButtons.forEach(button => {
@@ -338,6 +335,7 @@ function startGame() {
 function gameOver() {
   if (currentBlock.some(index => gameMatrix[currentPosition + index].classList.contains('taken'))) {
   clearInterval(timer);
+  timeincrement = 1000;
   for (let i = 0; i < 200; i++) {
     gameMatrix[i].classList.remove('block', 'taken');
     gameMatrix[i].classList.add('square');
