@@ -12,15 +12,15 @@ const highScores = JSON.parse(localStorage.getItem('highScores')) || [
 highScoreBox. innerHTML = `${highScores[0].name} - ${highScores[0].score}`;
 
 // populates the scoreboard modal with the top 10 scores
-function tabulateScores() {
-  for (entry in highScores) {
-      scoreboardEntry.textContent = `${highScores[entry].name} - ${highScores[entry].score}`;
-      scoreboardListBox.appendChild(scoreboardEntry.cloneNode(true));
-  }
+
+for (entry in highScores) {
+    scoreboardEntry.textContent = `${highScores[entry].name} - ${highScores[entry].score}`;
+    scoreboardListBox.appendChild(scoreboardEntry.cloneNode(true));
 }
 
+
 // event listener to start the score saving function
-saveScoreButton.addEventListener('click', saveHighScore, tabulateScores);
+saveScoreButton.addEventListener('click', saveHighScore);
 
 // function to save the scores
 function saveHighScore(event) {

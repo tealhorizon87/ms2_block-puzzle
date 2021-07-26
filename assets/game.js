@@ -73,7 +73,6 @@ const modalButtons = [
 const startButtons = [
   startButton,
   startButtonSmall,
-  playAgainButton
 ];
 const closeButtons = [
   rulesCloseButton,
@@ -118,6 +117,7 @@ for (let i = 0; i < closeButtons.length; i++) {
 }
 playAgainButton.addEventListener('click', function() {
   gameOverModal.style.display = 'none';
+  startGame()
 });
 // movement event listeners
 window.addEventListener('keydown', function(event) {
@@ -318,10 +318,21 @@ function addScore() {
 
 // start game function
 function startGame() {
-  draw(currentBlock, gameMatrix, currentPosition, random);
-  timer = setInterval(moveDown, 1000);
-  previewRandom = Math.floor(Math.random()*blocks.length);
-  nextBlock();
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+    startButtons.forEach(button => {
+      button.innerHTML = 'Start';
+    });
+  } else {
+    draw(currentBlock, gameMatrix, currentPosition, random);
+    timer = setInterval(moveDown, 1000);
+    previewRandom = Math.floor(Math.random()*blocks.length);
+    nextBlock();
+    startButtons.forEach(button => {
+      button.innerHTML = 'Pause';
+    });
+  }
 }
 
 function gameOver() {
