@@ -60,3 +60,31 @@ A new colour palette was made and installed to the page. Below are the two palet
 
 ![old colour palette](assets/img/colour-palette-old.png)
 ![new colour palette](assets/img/colour-palette.png)
+
+The colour palette was added in commit [#4044ca7](https://github.com/tealhorizon87/ms2_block-puzzle/commit/4044ca74022b2fb1b9fe3ce79906ba6b46c63448) and the meta description in commit [#fe4b03d](https://github.com/tealhorizon87/ms2_block-puzzle/commit/fe4b03d64ac658a54ff58940b7ea0968c9760d0b). After these adjustments lighthouse was run again, and the reports are shown below:
+
+![new lh reports](assets/img/lh-combined-new.png)
+
+## Objective Testing
+
+Below is a table containing the testing matrix that was used to make sure all the functions in the project work correctly:
+
+## User Story Evaluation
+
+Finally, to make sure that the goals set out at the beginning of the project have been met, the user stories were evaluated:
+
+- As a user, I want -
+  - to be told how to play the game before it starts
+    - __This was to be achieved by having the rules displayed on the page at all times, but style-wise it didn't work. the rules are now found in the 'How to Play' menu option, which should be easy enough for any user to find__
+  - to be able to start and pause the game whenever I want
+    - __A start button is always visible on all screen sizes, and when clicked to start the game, becomes the pause button__
+  - to be able to restart the game if I lose
+    - __a 'Play Again' button is in the game over screen that will allow the user to start the game again without further navigation__
+  - to see my current score and level
+    - __This is achieved in the readout to the right of the main grid. This is currently not available on small screens and will be added at a later date. There are also no levels associated with the game any more__
+  - to see my previous scores, and what my highest score is
+    - __The scoreboard screen will display the users best 10 scores, and the 'high score' readout to the right of the main grid achieves this__
+  - to be able to play the game on any sized device
+    - __As described before, the user is able to play the game on any sized screen. There are some features that are currently unavailable on the smallest screen sizes due to screen space. These may be added at a later stage__
+  - contact the owner of the game app to suggest additional features or report bugs
+    - __A contact form is available on the contact screen so the user can contact the owner__
