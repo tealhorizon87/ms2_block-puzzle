@@ -1,14 +1,14 @@
 /* ---------------------------------------Colours */
 :root {
-  --red-block: #fe3460;
-  --green-block: #47ff47;
-  --orange-block: #ff8b33;
-  --pink-block: #da47ff;
-  --tourquise-block: #70eaff;
-  --yellow-block: #ffda33;
-  --dark-blue: #272879;
+  --red-block: #f40136;
+  --green-block: #0aff0a;
+  --orange-block: #f56a00;
+  --pink-block: #ce0aff;
+  --tourquise-block: #33e0ff;
+  --yellow-block: #f5c800;
+  --dark-blue: #191a4d;
   --mid-blue: #4079e2;
-  --light-blue: #99dbff;
+  --light-blue: #d6f1ff;
 }
 
 /* ---------------------------------------Fonts */
