@@ -169,6 +169,11 @@ main {
   width: 120px;
 }
 
+.next-block h2 {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
 .scores {
   margin-top: 1rem;
   padding: 0 1rem;
@@ -176,7 +181,7 @@ main {
   max-width: 180px;
 }
 
-.scores h4 {
+.scores h3 {
   margin: 1rem 0;
 }
 
