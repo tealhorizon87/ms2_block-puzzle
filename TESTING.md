@@ -67,7 +67,11 @@ The colour palette was added in commit [#4044ca7](https://github.com/tealhorizon
 
 ## Objective Testing
 
-Below is a table containing the testing matrix that was used to make sure all the functions in the project work correctly:
+Below is a preview of the table containing the testing matrix that was used to make sure all the functions in the project work correctly:
+
+![test matrix](assets/img/test-matrix.png)
+
+The full table can be found [here](assets/docs/test-matrix-complete.pdf). The corrections that were made are contained within commit [#34cfe3d](https://github.com/tealhorizon87/ms2_block-puzzle/commit/34cfe3d0acd86a50f46b24abf477e0812fd9d92b).
 
 ## User Story Evaluation
 
