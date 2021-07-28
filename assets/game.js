@@ -119,8 +119,9 @@ playAgainButton.addEventListener('click', function() {
   gameOverModal.style.display = 'none';
   startGame()
 });
-// movement event listeners
-window.addEventListener('keydown', function(event) {
+
+// movement function to be actioned in the event listener in startGame
+ function controls(event) {
   switch(event.code) {
     case 'KeyW':
     case 'ArrowUp':
@@ -139,7 +140,7 @@ window.addEventListener('keydown', function(event) {
       moveSideways(9, 1, 1);
       break;
   }
-});
+}
 // touch control event listeners
 leftArrow.addEventListener('click', function() {
   moveSideways(0, -1, -1);
@@ -286,10 +287,18 @@ function moveSideways(edgeIndex, takenIncrement, positionIncrement) {
 }
 
 function rotate() {
-  unDraw();
-  currentRotation = (currentRotation + 1) % 4;
-  currentBlock = blocks[random][currentRotation];
-  draw(currentBlock, gameMatrix, currentPosition, random);
+  let leftEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 0);
+  let rightEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 9);
+  if (blocks[random][(currentRotation + 1) % 4].some(index => gameMatrix[currentPosition + index].classList.contains('taken'))) {
+    return;
+  } else if (leftEdge || rightEdge) {
+    return;
+  } else {
+    unDraw();
+    currentRotation = (currentRotation + 1) % 4;
+    currentBlock = blocks[random][currentRotation];
+    draw(currentBlock, gameMatrix, currentPosition, random);
+  }
 }
 
 // Scoring function
@@ -316,12 +325,14 @@ function addScore() {
 // start game function
 function startGame() {
   if (timer) {
+    window.removeEventListener('keydown', controls);
     clearInterval(timer);
     timer = null;
     startButtons.forEach(button => {
       button.innerHTML = 'Start';
     });
   } else {
+    window.addEventListener('keydown', controls);
     draw(currentBlock, gameMatrix, currentPosition, random);
     timer = setInterval(moveDown, timeincrement);
     previewRandom = Math.floor(Math.random()*blocks.length);
