@@ -1,10 +1,10 @@
 // constants relating to the scoreboard
-const saveScoreButton = document.getElementById('saveScoreButton');
-const highScoreBox = document.getElementById('highScoreBox');
-const scoreboardListBox = document.getElementById('scoreboardListBox');
-var scoreboardEntry = document.createElement('li');
+const saveScoreButton = document.getElementById("saveScoreButton");
+const highScoreBox = document.getElementById("highScoreBox");
+const scoreboardListBox = document.getElementById("scoreboardListBox");
+var scoreboardEntry = document.createElement("li");
 // constant that will either load the array from local or an empty array
-const highScores = JSON.parse(localStorage.getItem('highScores')) || [
+const highScores = JSON.parse(localStorage.getItem("highScores")) || [
   {name: name, score: 0}
 ];
 
@@ -20,7 +20,7 @@ for (entry in highScores) {
 
 
 // event listener to start the score saving function
-saveScoreButton.addEventListener('click', saveHighScore);
+saveScoreButton.addEventListener("click", saveHighScore);
 
 // function to save the scores
 function saveHighScore(event) {
@@ -35,6 +35,6 @@ function saveHighScore(event) {
   highScores.sort((a, b) => b.score - a.score);
   highScores.splice(10);
 
-  localStorage.setItem('highScores', JSON.stringify(highScores));
+  localStorage.setItem("highScores", JSON.stringify(highScores));
   highScoreBox. innerHTML = `${highScores[0].name} - ${highScores[0].score}`;
 }

@@ -28,12 +28,9 @@ The CSS file was passed through the [W3C CSS Validation Service](https://jigsaw.
 ![css validation](assets/img/css-valid.png)
 
 ### JavaScript
-The JavaScript files were copied into [JSHint](https://jshint.com/) for error checking. The first pass revealed that there were a lot of missing semicolons or semicolons in the wrong place. After reviewing how semicolons should be used I corrected the whole file and passed it through [JSHint](https://jshint.com/) again. This now came out with 10 warnings that relate to functions within functions or global FOR loops.
+The JavaScript files were copied into [JSLint](https://www.jslint.com/) for error checking. The first pass revealed that there were a lot of missing semicolons or semicolons in the wrong place, and that I had used single quotes rather than double quotes. After reviewing how semicolons should be used I corrected the whole file and passed it through again. It then came out with one warning regarding a FOR loop and not declaring 'i' before the loop.
 
-![js validation1](assets/img/js-valid1.png)
-![js validation2](assets/img/js-valid2.png)
-
-The warnings are valid but in the context of this project I have chosen to ignore them as the code works fine without correcting them.
+The warning is valid but in the context of this project I have chosen to ignore it as the code works fine without correction.
 
 ## Responsiveness
 

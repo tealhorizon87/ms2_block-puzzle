@@ -1,13 +1,13 @@
 function sendMail(contactForm) {
-  emailjs.send('service_2p76xzg', 'bp-form', {
-    'from_name': contactForm.fullname.value,
-    'from_email': contactForm.emailaddress.value,
-    'subject': contactForm.subject.value,
-    'message': contactForm.message.value
+  emailjs.send("service_2p76xzg", "bp-form", {
+    "from_name": contactForm.fullname.value,
+    "from_email": contactForm.emailaddress.value,
+    "subject": contactForm.subject.value,
+    "message": contactForm.message.value
   })
   .then(
     function(response) {
-      alert('Your feedback has been sent');
+      alert("Your feedback has been sent");
       clearForm();
       return response;
     },
@@ -19,8 +19,8 @@ function sendMail(contactForm) {
 }
 
 function clearForm() {
-  document.getElementsByTagName('input').value = '';
-  document.getElementsByTagName('textarea').value = '';
-  document.getElementsByTagName('select').value = '';
-  contactModal.style.display = 'none';
+  document.getElementsByTagName("input").value = '';
+  document.getElementsByTagName("textarea").value = '';
+  document.getElementsByTagName("select").value = '';
+  contactModal.style.display = "none";
 }
