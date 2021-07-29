@@ -53,11 +53,11 @@ const modals = [
   contactModal
 ];
 
-for (button in buttons) {
-  button = document.getElementById('button');
+for (let button in buttons) {
+  button = document.getElementById(button);
 }
-for (modal in modals) {
-  modal = document.getElementById('modal');
+for (let modal in modals) {
+  modal = document.getElementById(modal);
 }
 
 // button and modal arrays for mapping event listeners
@@ -108,7 +108,7 @@ for (let i = 0; i < 3; i++) {
   });
 }
 for (let i = 0; i < startButtons.length; i++) {
-  startButtons[i].addEventListener('click', startGame);
+  startButtons[i].addEventListener('click', startPause);
 }
 for (let i = 0; i < closeButtons.length; i++) {
   closeButtons[i].addEventListener('click', function() {
@@ -117,7 +117,7 @@ for (let i = 0; i < closeButtons.length; i++) {
 }
 playAgainButton.addEventListener('click', function() {
   gameOverModal.style.display = 'none';
-  startGame()
+  startPause()
 });
 
 // movement function to be actioned in the event listener in startGame
@@ -208,7 +208,7 @@ const colours = [
   ['var(--red-block)']
 ];
 // variables and constants for the main game
-var gameMatrix = Array.from(gameBox.children);
+const gameMatrix = Array.from(gameBox.children);
 const miniMatrix = Array.from(previewBox.children);
 var currentPosition = 3;
 var currentRotation = 0;
@@ -324,22 +324,30 @@ function addScore() {
 
 // start game function
 function startGame() {
+  window.addEventListener('keydown', controls);
+  draw(currentBlock, gameMatrix, currentPosition, random);
+  timer = setInterval(moveDown, timeincrement);
+  previewRandom = Math.floor(Math.random()*blocks.length);
+  nextBlock();
+  startButtons.forEach(button => {
+    button.innerHTML = 'Pause';
+  });
+}
+
+function pauseGame() {
+  window.removeEventListener('keydown', controls);
+  clearInterval(timer);
+  timer = null;
+  startButtons.forEach(button => {
+    button.innerHTML = 'Start';
+  });
+}
+
+function startPause() {
   if (timer) {
-    window.removeEventListener('keydown', controls);
-    clearInterval(timer);
-    timer = null;
-    startButtons.forEach(button => {
-      button.innerHTML = 'Start';
-    });
+    pauseGame()
   } else {
-    window.addEventListener('keydown', controls);
-    draw(currentBlock, gameMatrix, currentPosition, random);
-    timer = setInterval(moveDown, timeincrement);
-    previewRandom = Math.floor(Math.random()*blocks.length);
-    nextBlock();
-    startButtons.forEach(button => {
-      button.innerHTML = 'Pause';
-    });
+    startGame()
   }
 }
 
