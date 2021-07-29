@@ -65,6 +65,10 @@ The colour palette was added in commit [#4044ca7](https://github.com/tealhorizon
 
 ![new lh reports](assets/img/lh-combined-new.png)
 
+### Cross-Browser Compatibility
+The link for the site was uploaded to [BrowserStack](https://www.browserstack.com/). The site was then loaded using multiple browsers, and all worked exactly as expected.
+
+
 ## Objective Testing
 
 Below is a preview of the table containing the testing matrix that was used to make sure all the functions in the project work correctly:
