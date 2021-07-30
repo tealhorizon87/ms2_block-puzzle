@@ -138,9 +138,11 @@ Back to [Table of Contents](#table-of-contents)
 
 ### Content
   - The CSS reset page was taken from [here](https://meyerweb.com/eric/tools/css/reset/)
+  - The setup of the email service with emailJS was done using the code from the [Code Institute](https://codeinstitute.net/) tutorial
   - All other code was written by myself, but with inspiration taken from the following sources:
     - [kubowania](https://github.com/kubowania/Tetris-Basic) via the associated [YouTube](https://www.youtube.com/watch?v=rAUn1Lom6dw&list=WL&index=4) video - this provided the basic structural inspiration for the code
     - [jamesqquick](https://github.com/jamesqquick/Build-A-Quiz-App-With-HTML-CSS-and-JavaScript) and the associated [YouTube](https://www.youtube.com/watch?v=DFhmNLKwwGw&list=WL&index=6&t=459s) to help understand how to set up the local storage code
+  Any area where the code was predominantly unchanged from these tutorials have been labelled as such in the game.js file.
 
 ### Acknowledgements
   - Thanks to my mentor for help, guidance and support during this project as always

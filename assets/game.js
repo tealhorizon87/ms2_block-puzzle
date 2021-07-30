@@ -52,7 +52,7 @@ const modals = [
   gameOverModal,
   contactModal
 ];
-
+// defines the buttons and modals for later
 for (var button in buttons) {
   button = document.getElementById(button);
 }
@@ -97,24 +97,29 @@ const eventModals =[
 ];
 
 // button event listeners
+// for opening the modal
 for (let i = 0; i < modalButtons.length; i++) {
   modalButtons[i].addEventListener("click", function() {
     eventModals[i].style.display = "block";
   });
 }
+// for closing the modal by clicking on the screen
 for (let i = 0; i < 3; i++) {
   modals[i].addEventListener("click", function() {
     modals[i].style.display = "none";
   });
 }
+// to start/pause the game
 for (let i = 0; i < startButtons.length; i++) {
   startButtons[i].addEventListener("click", startPause);
 }
+// to close the modal using the closing button
 for (let i = 0; i < closeButtons.length; i++) {
   closeButtons[i].addEventListener("click", function() {
     closeButtonModals[i].style.display = "none";
   });
 }
+// to start the game from the game over screen
 playAgainButton.addEventListener("click", function() {
   gameOverModal.style.display = "none";
   startPause()
@@ -150,6 +155,9 @@ rightArrow.addEventListener("click", function() {
 });
 upArrow.addEventListener("click", rotate);
 downArrow.addEventListener("click", moveDown);
+
+// ATTRIBUTION: The method of defining the blocks and rotations was taken
+// from kubowania. See README for furtherdetails
 
 // constants containing the arrays for the blocks and their rotations
 const gridWidth = 10;
@@ -190,7 +198,9 @@ const iBlock = [
   [1, gridWidth+1, gridWidth*2+1, gridWidth*3+1],
   [gridWidth, gridWidth+1, gridWidth+2, gridWidth+3]
 ];
+// array of the blocks
 const blocks = [jBlock, lBlock, zBlock, tBlock, oBlock, iBlock];
+// array for the blocksin the 'next block' window
 const previewBlocks = [
   [previewGridWidth+1, previewGridWidth+2, previewGridWidth*2+1, previewGridWidth*3+1],
   [previewGridWidth+1, previewGridWidth+2, previewGridWidth*2+2, previewGridWidth*3+2],
@@ -207,6 +217,8 @@ const colours = [
   ["var(--pink-block)"],
   ["var(--red-block)"]
 ];
+// END OF ATTRIBUTION
+
 // variables and constants for the main game
 const gameMatrix = Array.from(gameBox.children);
 const miniMatrix = Array.from(previewBox.children);
@@ -222,6 +234,8 @@ var timer;
 var timeincrement = 1000;
 
 // Drawing functions
+
+// draws the block
 function draw(whichBlock, setting, position, whichRandom) {
   whichBlock.forEach(index => {
     setting[position + index].classList.remove("square");
@@ -231,6 +245,8 @@ function draw(whichBlock, setting, position, whichRandom) {
   });
 }
 
+// undraws the block. Used so that manipulations to the block
+// before it is moved are not seen
 function unDraw() {
   currentBlock.forEach(index => {
     gameMatrix[currentPosition + index].classList.remove("block");
@@ -239,6 +255,7 @@ function unDraw() {
   });
 }
 
+// generates a block in the 'next block' window
 function nextBlock() {
   miniMatrix.forEach(index => {
     index.classList.remove("block");
@@ -249,6 +266,8 @@ function nextBlock() {
 }
 
 // movement functions
+
+// moves the block one square down
 function moveDown() {
   unDraw();
   currentPosition += gridWidth;
@@ -256,6 +275,7 @@ function moveDown() {
   stopMoveDown();
 }
 
+// collision detection - stops the block if it hits the bottom or another block
 function stopMoveDown() {
   if (currentBlock.some(index => gameMatrix[currentPosition + index + gridWidth].classList.contains("taken"))) {
     currentBlock.forEach(index => gameMatrix[currentPosition + index].classList.add("taken"));
@@ -274,6 +294,7 @@ function stopMoveDown() {
   }
 }
 
+// moves the block left or right depending on which key is pressed
 function moveSideways(edgeIndex, takenIncrement, positionIncrement) {
   let edge = currentBlock.some(index => (currentPosition + index) % gridWidth === edgeIndex);
   let taken = currentBlock.some(index => gameMatrix[currentPosition + index + takenIncrement].classList.contains("taken"));
@@ -286,6 +307,7 @@ function moveSideways(edgeIndex, takenIncrement, positionIncrement) {
   }
 }
 
+// rotates the block clockwise
 function rotate() {
   let leftEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 0);
   let rightEdge = currentBlock.some(index => (currentPosition + index) % gridWidth === 9);
@@ -300,6 +322,9 @@ function rotate() {
     draw(currentBlock, gameMatrix, currentPosition, random);
   }
 }
+
+// ATTRIBUTION: This function has been predominantly copied
+// from kubowania. See README for further details
 
 // Scoring function
 function addScore() {
@@ -321,6 +346,7 @@ function addScore() {
     }
   }
 }
+// END OF ATTRIBUTION
 
 // start game function
 function startGame() {
