@@ -2,6 +2,7 @@
 
 This page contains all the stages that I went through to test this page and it's features.
 
+You can return to the main README page [here](README.md)
 ## Table of Contents
 1. [Code Validation](#code-validation)
     - [HTML](#html)
@@ -65,6 +66,7 @@ The colour palette was added in commit [#4044ca7](https://github.com/tealhorizon
 ### Cross-Browser Compatibility
 The link for the site was uploaded to [BrowserStack](https://www.browserstack.com/). The site was then loaded using multiple browsers, and all worked exactly as expected.
 
+Back to [Table of Contents](#table-of-contents)
 
 ## Objective Testing
 
@@ -73,6 +75,8 @@ Below is a preview of the table containing the testing matrix that was used to m
 ![test matrix](assets/img/test-matrix.png)
 
 The full table can be found [here](assets/docs/test-matrix-complete.pdf). The corrections that were made are contained within commit [#34cfe3d](https://github.com/tealhorizon87/ms2_block-puzzle/commit/34cfe3d0acd86a50f46b24abf477e0812fd9d92b).
+
+Back to [Table of Contents](#table-of-contents)
 
 ## User Story Evaluation
 
@@ -93,3 +97,5 @@ Finally, to make sure that the goals set out at the beginning of the project hav
     - __As described before, the user is able to play the game on any sized screen. There are some features that are currently unavailable on the smallest screen sizes due to screen space. These may be added at a later stage__
   - contact the owner of the game app to suggest additional features or report bugs
     - __A contact form is available on the contact screen so the user can contact the owner__
+
+Back to [Table of Contents](#table-of-contents)
