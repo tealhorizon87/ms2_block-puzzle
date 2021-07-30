@@ -59,6 +59,11 @@ Back to [Table of Contents](#table-of-contents)
 - Where there is not enough space to display normally (eg. on a 'small' screen), modals are used
 - A contact form will be available to allow user-owner communication
 
+### Future Features
+- Introduce a level system related to the speed of the blocks as they descend down the screen
+- Increase usability for mobile devices by adding full touch controls
+- Add an animation to when the rows are cancelled to draw attention to it more
+
 ## Technologies Used
 ### Languages:
   - [HTML5](https://en.wikipedia.org/wiki/HTML5)
@@ -90,7 +95,15 @@ Back to [Table of Contents](#table-of-contents)
 
 ## Testing
 
-I have gathered all my testing data, and stored it in a seperate file, which acn be found [here](TESTING.md)
+I have gathered all my testing data, and stored it in a separate file, which can be found [here](TESTING.md)
+
+### Known bugs
+#### Start and Pause
+  The pause and 'un-pause' systems work well, the issue is that when you resume the game, a new block is generated in the 'next block' grid rather than maintaining the one that was there before
+#### Block Rotation
+  The rotation issue with the block going beyond the side of the grid has been fixed. But as a consequence, if the block is in contact with the edge, you can't rotate the block __even if doing so will not distort the block__
+#### Menu closes when you close another modal
+  On small devices, the modal buttons are contained within a menu in the top right. When you open the menu and click on a title, the correct modal opens, but when you close the modal, the menu closes as well. The menu should stay on the screen until the user wants to close it
 
 ## Deployment
 ### GitHub Pages
