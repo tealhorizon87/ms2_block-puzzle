@@ -220,8 +220,8 @@ const colours = [
 // END OF ATTRIBUTION
 
 // variables and constants for the main game
-const gameMatrix = Array.from(gameBox.children);
-const miniMatrix = Array.from(previewBox.children);
+var gameMatrix = Array.from(gameBox.children);
+var miniMatrix = Array.from(previewBox.children);
 var currentPosition = 3;
 var currentRotation = 0;
 var random = Math.floor(Math.random()*blocks.length);
